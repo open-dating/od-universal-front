@@ -21,7 +21,7 @@ jobs:
 
       - name: Publish to Registry
         run: |
-          make push-docker-image DOCKER_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
+          make push-docker-image
 
       - name: Connect to server and update
         uses: appleboy/ssh-action@master
@@ -32,6 +32,6 @@ jobs:
           script: |
             whoami
             ls -al
-            docker pull grinat0/od-universal-front:latest
+            docker pull opendating/od-universal-front:latest
             docker rm --force od-universal-front || echo ""
-            docker run -d -p 4210:80 --name od-universal-front --restart always grinat0/od-universal-front:latest
+            docker run -d -p 4210:80 --name od-universal-front --restart always opendating/od-universal-front:latest
