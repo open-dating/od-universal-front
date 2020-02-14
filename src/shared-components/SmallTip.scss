@@ -1,0 +1,11 @@
+.small-tip {
+  margin: 0;
+
+  > div {
+    width: 100%;
+  }
+
+  small {
+    color: rgba(0, 0, 0, 0.54);
+  }
+}

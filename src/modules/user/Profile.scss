@@ -1,0 +1,9 @@
+@import '../../config/variables';
+
+.profile {
+  padding-top: 0;
+
+  .fetch-error {
+    margin-top: $topOffset;
+  }
+}

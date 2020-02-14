@@ -1,0 +1,15 @@
+.form-item {
+  margin: 20px 0;
+
+  > div {
+    width: 100%;
+  }
+
+  &.form-item--center {
+    text-align: center;
+  }
+
+  &.form-item--slider {
+
+  }
+}

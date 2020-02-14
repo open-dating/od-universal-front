@@ -1,0 +1,37 @@
+on:
+  push:
+    tags:
+      - v*
+
+name: Test, build, publish container, update server
+jobs:
+  master:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Build and test
+        run: |
+          make build-docker-image REACT_APP_HOST=${{ secrets.REACT_APP_HOST }}
+
+      - name: Login in docker registry
+        run: |
+          echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
+      - name: Publish to Registry
+        run: |
+          make push-docker-image DOCKER_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
+
+      - name: Connect to server and update
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            whoami
+            ls -al
+            docker pull grinat0/od-universal-front:latest
+            docker rm --force od-universal-front || echo ""
+            docker run -d -p 4210:80 --name od-universal-front --restart always grinat0/od-universal-front:latest

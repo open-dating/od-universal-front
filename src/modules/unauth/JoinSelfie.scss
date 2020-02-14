@@ -1,0 +1,95 @@
+.selfie {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  border-color: transparent !important;
+
+  .selfie__content {
+    position: relative;
+  }
+
+  .selfie__fallback {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .selfie__webcam, .selfie__screenshot {
+    display: flex;
+    position: relative;
+    justify-content: center;
+
+    video, img {
+      max-height: 80vh;
+      width: auto;
+      max-width: 90vw;
+    }
+
+    video {
+      background-color: #e3f2fd !important;
+    }
+  }
+
+  .selfie__screenshot__chips {
+    position: absolute;
+    top: 0;
+
+    > div {
+      margin: 15px;
+    }
+  }
+
+  .selfie__caption {
+    max-width: 90vw;
+    z-index: 10;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .selfie__actions {
+    display: flex;
+    justify-content: space-around;
+
+    button {
+      margin-left: 4px; // не увеличивать
+      margin-right: 4px; // не увеличивать
+    }
+
+    .selfie__actions___subactions__upload-btn {
+      position: relative;
+
+      input[type="file"] {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+      }
+    }
+  }
+
+  &.selfie--with-screenshot {
+    .selfie__webcam, .selfie__fallback {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+  }
+
+  &.selfie--with-fallback {
+    .selfie__webcam {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    .selfie__fallback {
+      position: relative;
+      top: 0;
+      left: 0;
+      text-align: center;
+    }
+  }
+
+  &.selfie--loading {
+    opacity: 0.5;
+  }
+}

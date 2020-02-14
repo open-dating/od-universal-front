@@ -1,0 +1,17 @@
+.welcome {
+  .welcome__buttons {
+    display: flex;
+    justify-content: center;
+    margin: 40px 16px;
+
+    button {
+      &:first-child {
+        margin-right: 10px;
+      }
+
+      &:last-child {
+        margin-left: 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,150 @@
+@import '../../../config/variables';
+
+.user-card {
+  overflow-x: hidden;
+  position: relative;
+  height: calc(100vh - #{$toolbarHeight});
+  user-select: none;
+
+  .user-profile {
+    position: absolute;
+    width: 100%;
+    padding-left: $cardOffset;
+    box-sizing: border-box;
+    padding-right: $cardOffset;
+
+    &.reset-swipe {
+      transition: 200ms ease-in-out;
+    }
+
+    .user-profile__card {
+      width: 100%;
+      max-width: $cardWidth;
+      margin: 15px auto 90px auto;
+      position: relative;
+
+      .user-profile__card__header {
+        padding-bottom: 0;
+
+        &.user-profile__card__header--next {
+          padding-top: 0;
+        }
+
+        .user-profile__card__header__row {
+          display: flex;
+          justify-content: space-between;
+
+          > div {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 250px;
+          }
+        }
+
+        .user-profile__card__header__info {
+          display: flex;
+          justify-content: space-between;
+
+          > div {
+            width: 50%;
+
+            &:nth-child(even) {
+              text-align: right;
+            }
+          }
+        }
+
+        .user-card-dnn-heart {
+          position: absolute;
+          top: 8px;
+          right: 10px;
+        }
+      }
+
+      .user-profile__card__actions {
+        padding-top: 0;
+        margin-bottom: 5px;
+
+        button {
+          font-size: 10px;
+        }
+      }
+
+      &.user-profile__card--marked {
+        transition: opacity 0.3s ease-in-out;
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .user-actions {
+    &.user-actions--marked {
+      display: none;
+    }
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    .user-actions__buttons {
+      max-width: $cardWidth;
+      margin: 0 auto;
+      position: relative;
+
+      svg {
+        font-size: 2.5rem;
+      }
+
+      button {
+        background: #ffffff70;
+      }
+
+      .user-actions__buttons__dislike {
+        position: absolute;
+        bottom: 15px;
+        left: 60px;
+      }
+
+      .user-actions__buttons__like {
+        position: absolute;
+        bottom: 15px;
+        right: 60px;
+      }
+    }
+  }
+
+  .like-indicators {
+    position: fixed;
+    top: 40vh;
+    left: 0;
+    width: 100%;
+
+    .like-indicators__content {
+      max-width: $cardWidth;
+      margin: 0 auto;
+      text-align: center;
+
+      > div {
+        display: none;
+        padding: 0 60px;
+
+        svg {
+          opacity: 0.5;
+          font-size: 4rem;
+        }
+      }
+
+      .like-indicators__content__dislike {
+        color: #3f51b5;
+        // float: left;
+      }
+
+      .like-indicators__content__like {
+        color: #f50057;
+        // float: right;
+      }
+    }
+  }
+}

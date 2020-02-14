@@ -1,0 +1,9 @@
+.admin-list {
+  .admin-list__table{
+    max-height: calc(100vh - 125px);
+  }
+
+  .admin-list__pagination-wrap {
+    width: 100%;
+  }
+}

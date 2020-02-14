@@ -1,0 +1,72 @@
+@import '../config/variables';
+
+.photos-changer {
+  max-width: #{$cardWidth * 2 + 40px};
+  margin: 0 auto !important;
+
+  .photos-changer__item {
+    position: relative;
+    height: 100%;
+    min-height: 220px;
+
+    // Paper
+    .photos-changer__item__paper {
+      height: 100%;
+      padding: 4px;
+      max-width: $cardWidth;
+      margin: 0 auto;
+
+      .photos-changer__item__paper__photo {
+        text-align: center;
+        position: relative;
+        height: 60vh;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        .photos-changer__item__paper__photo__caption {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          padding: 0;
+          box-sizing: border-box;
+
+          .photos-changer__item__paper__photo__caption__content {
+            width: 100%;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 16px;
+            overflow: hidden;
+            box-sizing: border-box;
+          }
+        }
+
+        .photos-changer__item__paper__photo__actions {
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
+      }
+    }
+
+    .upload-btn-big {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+@media (max-width: 599px) {
+  .photos-changer {
+    .photos-changer__item--add {
+      .photos-changer__item__paper {
+        .photos-changer__item__paper__photo {
+          height: 250px;
+        }
+      }
+    }
+  }
+}

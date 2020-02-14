@@ -1,0 +1,16 @@
+@import '../config/variables';
+
+.spinner-prefetch{
+  position: fixed;
+  top: $toolbarHeight;
+  left: 0;
+  width: 100%;
+  z-index: 10000;
+
+  .spinner-prefetch__element {
+    position: absolute;
+    left: 50%;
+    transform: translate(0%, 50%);
+    width: 100%;
+  }
+}

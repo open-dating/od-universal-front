@@ -1,0 +1,24 @@
+.user-card-dnn-heart {
+  position: relative;
+
+  .user-card-dnn-heart__count {
+    position: absolute;
+    top: 13px;
+    right: 9px;
+    font-size: 14px;
+    color: white;
+    z-index: 1;
+  }
+
+  .user-card-dnn-heart__icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #f44336;
+
+    svg {
+      width: 48px;
+      height: 48px;
+    }
+  }
+}

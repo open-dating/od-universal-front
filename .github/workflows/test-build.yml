@@ -1,0 +1,12 @@
+on: [push, pull_request]
+name: Test, build
+jobs:
+  master:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Build and test
+        run: |
+          make build-docker-image REACT_APP_HOST=${{ secrets.REACT_APP_HOST }}

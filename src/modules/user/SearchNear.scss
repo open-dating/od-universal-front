@@ -1,0 +1,30 @@
+@import '../../config/variables';
+
+.search-near {
+  .search-near__message {
+    padding-top: $topOffset;
+  }
+
+  .search-near__user-cards {
+    position: relative;
+
+    .search-near__user-cards__next-user {
+      position: fixed;
+      top: $toolbarHeight;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      opacity: 0.13;
+      z-index: -1;
+
+      .user-card-photo {
+        opacity: 0.3;
+      }
+
+      .user-card {
+        height: calc(100vh - 150px);
+        transform: rotate(2deg);
+      }
+    }
+  }
+}

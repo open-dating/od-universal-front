@@ -1,0 +1,69 @@
+@import '../../../config/variables';
+
+.user-card-tour {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.48);
+  mix-blend-mode: hard-light;
+  z-index: 100;
+  font: inherit;
+  color: white;
+
+  .user-card-tour__dnn-heart {
+    position: absolute;
+    top: 13px;
+    right: 65px;
+    width: 50%;
+    text-align: right;
+    color: gray;
+  }
+  .user-card-tour__dnn-heart__hole{
+    position: absolute;
+    top: 3px;
+    right: 8px;
+    width: 53px;
+    height: 53px;
+    background: gray;
+    border-radius: 50%;
+  }
+
+  .user-card-tour__blocks{
+    position: fixed;
+    top: 160px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: #{$cardWidth - $cardOffset * 3};
+    max-width: 90vw;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .user-card-tour__left, .user-card-tour__right{
+    width: 40%;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .user-card-tour__vertical-delimiter{
+    width: 0;
+    border: 1px solid #eee;
+  }
+
+  .user-card-tour__bottom{
+    padding: 45px;
+  }
+
+  .user-card-tour__bottom, .user-card-tour__confirm{
+    width: 100%;
+    text-align: center;
+  }
+
+  .user-card-tour__icon {
+    width: 3em;
+    height: 3em;
+  }
+}

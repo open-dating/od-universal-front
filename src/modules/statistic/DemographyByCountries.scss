@@ -1,0 +1,26 @@
+@import '../../config/variables';
+
+@import "~leaflet/dist/leaflet.css";
+
+.demography-by-countries {
+  position: relative;
+  height: calc(100vh - #{$toolbarHeight});
+
+  .demography-by-countries__map {
+    height: calc(100vh - #{$toolbarHeight});
+    width: 100%;
+
+    pre {
+      max-height: 200px;
+      overflow: auto;
+    }
+  }
+
+  .fetch-error {
+    top: 16px;
+    left: 10vw;
+    position: absolute;
+    width: 80vw;
+    z-index: 1000;
+  }
+}

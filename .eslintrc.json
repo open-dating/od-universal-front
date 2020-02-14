@@ -1,0 +1,30 @@
+{
+  "env": {
+    "es6": true,
+    "jest": true,
+    "node": true,
+    "browser": true,
+    "commonjs": true,
+    "serviceworker": true
+  },
+  "extends": [
+    "react-app"
+  ],
+  "plugins": [
+    "react-hooks",
+    "eslint-plugin-import"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2019,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "semi": [2, "never"],
+    "quotes": [2, "single"],
+    "comma-dangle": [2, "always-multiline"]
+  }
+}

@@ -1,0 +1,74 @@
+.message-form {
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+  0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+  0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+
+  .message-form__form {
+    display: flex;
+    justify-content: center;
+
+    .message-form__form__blocked {
+      padding: 10px;
+    }
+
+    .message-form__form__data {
+      width: 100%;
+
+      > div {
+        width: 100%;
+      }
+    }
+
+    .message-form__form__left {
+      text-align: left;
+      flex-basis: 80px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 6px;
+
+      .message-form__form__left__file-input {
+        width: 90%;
+        height: 100%;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        right: 10px;
+        z-index: 10;
+      }
+
+      .message-form__form__left__image {
+        overflow: hidden;
+        height: 34px;
+        margin: 0 auto;
+
+        .message-form__form__left__image__pic {
+          height: 34px;
+          width: auto;
+          opacity: 0.5;
+          margin-top: -2px;
+        }
+
+        .message-form__form__left__image__remove {
+          position: absolute;
+          top: 60%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+    }
+
+    .message-form__form__right {
+      text-align: right;
+      flex-basis: 80px;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 6px;
+    }
+  }
+}

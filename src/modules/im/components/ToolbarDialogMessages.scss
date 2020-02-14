@@ -1,0 +1,31 @@
+@import '../../../config/variables';
+
+.toolbar-dialog-message {
+  background-color: white;
+  box-shadow: $toolbarShadow;
+  border-bottom: none;
+  flex-grow: 1;
+  height: $toolbarHeight;
+
+  .toolbar-dialog-message__bar {
+    height: $toolbarHeight;
+    min-height: $toolbarHeight;
+
+    .toolbar-dialog-message__bar__title {
+      width: calc(100% - 60px);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      > div {
+        margin-left: 16px;
+      }
+
+      .toolbar-dialog-message__bar__title__opponent {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}

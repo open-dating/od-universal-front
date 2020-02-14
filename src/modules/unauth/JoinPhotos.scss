@@ -1,0 +1,14 @@
+.join-photos {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  border-color: transparent !important;
+
+  .join-photos__actions {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .small-tip {
+    margin-bottom: 15px;
+  }
+}
