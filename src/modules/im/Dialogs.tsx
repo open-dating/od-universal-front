@@ -5,6 +5,7 @@ import {List} from '@material-ui/core'
 import {DialogItem} from './components/DialogItem'
 import Container from '@material-ui/core/Container'
 import {useRouteMatch} from 'react-router-dom'
+import {useTranslation} from 'react-i18next'
 
 import './Dialogs.scss'
 import {fetchDialogs} from '../../store/actions/dialogs'
@@ -16,6 +17,7 @@ import {openMessageBox} from '../../shared-components/MessageBox'
 const fetchNextOnScrollSize = 150
 
 export function Dialogs() {
+  const {t} = useTranslation()
   const userData = useSelector((state: StateApp) => state.user)
   const dispatch = useDispatch()
   const dialogs = useSelector((state: StateApp) => state.dialogs)
@@ -76,8 +78,7 @@ export function Dialogs() {
         {noDialogs && (
           <List>
             <li>
-              There are no mutual sympathies yet, how
-              only appear you can write to each other
+              {t('im.noSympathies')}
             </li>
           </List>
         )}

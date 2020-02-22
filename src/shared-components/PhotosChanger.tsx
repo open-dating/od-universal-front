@@ -4,6 +4,7 @@ import BrowserImageManipulation from 'browser-image-manipulation'
 import Paper from '@material-ui/core/Paper'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Fab from '@material-ui/core/Fab'
+import {useTranslation} from 'react-i18next'
 
 import {urlsPhoto} from '../services/api/urls'
 import {post} from '../services/api/restClient'
@@ -22,6 +23,8 @@ export function PhotosChanger(
     onChange: (photos: Photo[]) => void
   },
 ) {
+  const {t} = useTranslation()
+
   const sm = photos.length > 0 ? 6 : 12
 
   const fileChange = (e: any) => {
@@ -59,7 +62,7 @@ export function PhotosChanger(
       const {data}: {data: Photo} = await post(urlsPhoto.upload(), fd)
 
       if (data.isNSFW) {
-        throw new Error('You cant upload NSFW photo')
+        throw new Error(t('sharedComponents.nsfwPhotoErr'))
       }
 
       next.id = data.id

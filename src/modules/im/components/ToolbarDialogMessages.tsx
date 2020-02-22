@@ -10,6 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Avatar from '@material-ui/core/Avatar'
+import {useTranslation} from 'react-i18next'
 
 import {ImDialog} from '../../../interfaces/ImDialog'
 import {Complaint} from '../../../shared-components/Complaint'
@@ -21,6 +22,7 @@ import {urlsIm} from '../../../services/api/urls'
 import {MessageBoxType} from '../../../enums/message-box-type.enum'
 
 export function ToolbarDialogMessages({dialog}: {dialog?: ImDialog}) {
+  const {t} = useTranslation()
   const userData = useSelector((state: StateApp) => state.user)
   const history = useHistory()
   const [sending, setSending] = useState(false)
@@ -45,7 +47,7 @@ export function ToolbarDialogMessages({dialog}: {dialog?: ImDialog}) {
 
       await patch(urlsIm.blockDialog(Number(dialog?.id)), {}, userData.jwt?.accessToken)
 
-      openMessageBox('Dialog was blocked', MessageBoxType.success)
+      openMessageBox(t('im.dialogBlockedMsg'), MessageBoxType.success)
 
       goBack()
     } catch (e) {
@@ -100,7 +102,7 @@ export function ToolbarDialogMessages({dialog}: {dialog?: ImDialog}) {
           )}
         </div>
         {opponent && (
-          <>
+          <div>
             <IconButton
               edge="end"
               color="inherit"
@@ -122,10 +124,10 @@ export function ToolbarDialogMessages({dialog}: {dialog?: ImDialog}) {
               open={Boolean(anchorEl)}
               onClose={closeMenu}
             >
-              <MenuItem onClick={openComplaint}>Complaint</MenuItem>
-              <MenuItem onClick={block}>Block</MenuItem>
+              <MenuItem onClick={openComplaint}>{t('im.menuItemComplaint')}</MenuItem>
+              <MenuItem onClick={block}>{t('im.menuItemBlock')}</MenuItem>
             </Menu>
-          </>
+          </div>
         )}
       </Toolbar>
       {showComplaint && opponent && (<Complaint

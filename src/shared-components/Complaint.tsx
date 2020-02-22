@@ -6,6 +6,7 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import TextField from '@material-ui/core/TextField'
 import DialogActions from '@material-ui/core/DialogActions'
 import Button from '@material-ui/core/Button'
+import {useTranslation} from 'react-i18next'
 
 import {post} from '../services/api/restClient'
 import {useSelector} from 'react-redux'
@@ -33,7 +34,7 @@ export function Complaint(
     message: '',
   })
   const userData = useSelector((state: StateApp) => state.user)
-
+  const {t} = useTranslation()
 
   const handleChange = (event: React.BaseSyntheticEvent) => {
     setForm({
@@ -61,7 +62,7 @@ export function Complaint(
         userData.jwt?.accessToken,
       )
 
-      openMessageBox('Complaint was sent', MessageBoxType.success)
+      openMessageBox(t('sharedComponents.complaintSent'), MessageBoxType.success)
       setLoading(false)
       onDoneCb()
     } catch (e) {
@@ -76,19 +77,17 @@ export function Complaint(
       open={true}
       onClose={onDismissCb}
     >
-      <DialogTitle>Complaint</DialogTitle>
+      <DialogTitle>{t('sharedComponents.complaint')}</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          You can indicate what we should pay attention to,
-          to apply penalties either
-          ban user {user.firstname}
+          {t('sharedComponents.complaintUserTip')} {user.firstname}
         </DialogContentText>
         <TextField
           name="message"
           value={form.message}
           multiline
           onChange={handleChange}
-          placeholder="Complaint reason"
+          placeholder={t('sharedComponents.complaintReason')}
           rowsMax={4}
           margin="dense"
           fullWidth
@@ -100,14 +99,14 @@ export function Complaint(
           color="secondary"
           disabled={loading}
         >
-          Cancel
+          {t('sharedComponents.complaintCancel')}
         </Button>
         <Button
           onClick={handleSubmit}
           color="primary"
           disabled={loading}
         >
-          Send
+          {t('sharedComponents.complaintSend')}
         </Button>
       </DialogActions>
     </Dialog>

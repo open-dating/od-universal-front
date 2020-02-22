@@ -3,6 +3,7 @@ import {List} from '@material-ui/core'
 import {useDispatch, useSelector} from 'react-redux'
 import {useRouteMatch} from 'react-router-dom'
 import Container from '@material-ui/core/Container'
+import {useTranslation} from 'react-i18next'
 
 import './DialogMessages.scss'
 import {post} from '../../services/api/restClient'
@@ -22,6 +23,7 @@ import {openMessageBox} from '../../shared-components/MessageBox'
 const fetchPrevOnScrollSize = 150
 
 export function DialogMessages() {
+  const {t} = useTranslation()
   const userData = useSelector((state: StateApp) => state.user)
   const match = useRouteMatch('/im/dialog/:id')
   const messageListRef = useRef<HTMLDivElement>(null)
@@ -186,7 +188,7 @@ export function DialogMessages() {
                   />,
                 )}
                 {!error && noMessages && (
-                  <li>No messages</li>
+                  <li>{t('im.noMessages')}</li>
                 )}
                 {error && noMessages && (
                   <FetchError error={error}/>

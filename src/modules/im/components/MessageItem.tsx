@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import {Link} from 'react-router-dom'
+import {useTranslation} from 'react-i18next'
 
 import './MessageItem.scss'
 import {UserProfile} from '../../../interfaces/UserProfile'
@@ -37,6 +38,7 @@ const getWHRelativeToScrWidth = (width = 100, height = 100, visibleAreaWH = [0, 
 }
 
 export function MessageItem({user, message, visibleAreaWH}: {user: UserProfile|null, message: ImMessage, visibleAreaWH: number[]}) {
+  const {t} = useTranslation()
   const classes = useStyles()
   const [showNotSafe, setShowNotSafe] = React.useState(false)
   const fromUser = message.fromUser
@@ -89,11 +91,11 @@ export function MessageItem({user, message, visibleAreaWH}: {user: UserProfile|n
                   <Button
                     className="message-item__message__content__image__toggle"
                     onClick={() => setShowNotSafe(!showNotSafe)}
-                  >{showNotSafe ? 'Hide' : 'Show'}</Button>)
+                  >{showNotSafe ? t('common.hide') : t('common.show')}</Button>)
                 }
                 {notSafe && (
                   <div className="message-item__message__content__image__caption">
-                    Is NSFW image and is hidden now
+                    {t('im.photoNsfwAndHidden')}
                   </div>
                 )}
               </div>

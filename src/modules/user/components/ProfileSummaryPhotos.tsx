@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Button from '@material-ui/core/Button'
 import {useDispatch, useSelector} from 'react-redux'
+import {useTranslation} from 'react-i18next'
 
 import './ProfileSummaryPhotos.scss'
 import {PhotosChanger} from '../../../shared-components/PhotosChanger'
@@ -13,6 +14,7 @@ import {StateApp} from '../../../interfaces/StateApp'
 import {MessageBoxType} from '../../../enums/message-box-type.enum'
 
 export function ProfileSummaryPhotos() {
+  const {t} = useTranslation()
   const userData = useSelector((state: StateApp) => state.user)
   const [disabled, setDisabled] = useState(true)
   const [loading, setLoading] = useState(false)
@@ -54,7 +56,7 @@ export function ProfileSummaryPhotos() {
 
       setLoading(false)
 
-      openMessageBox('Saved', MessageBoxType.success)
+      openMessageBox(t('common.saved'), MessageBoxType.success)
     } catch (e) {
       console.error(e)
       setLoading(false)
@@ -75,7 +77,7 @@ export function ProfileSummaryPhotos() {
           onClick={save}
           disabled={disabled}
         >
-          {loading ? 'Saving...' : 'Save'}
+          {loading ? t('common.saveWait') : t('common.save')}
         </Button>
       </div>
     </div>

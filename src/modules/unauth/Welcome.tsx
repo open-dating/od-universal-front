@@ -1,12 +1,14 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
 import {useHistory} from 'react-router-dom'
+import {useTranslation} from 'react-i18next'
 
 import './Welcome.scss'
 import {ToolbarMain} from '../../shared-components/ToolbarMain'
 
 export function Welcome() {
   const history = useHistory()
+  const {t} = useTranslation()
 
   return (
     <>
@@ -17,12 +19,12 @@ export function Welcome() {
             variant="contained"
             color="primary"
             onClick={() => history.push('/unauth/signin')}
-          >Sign in</Button>
+          >{t('unauth.signIn')}</Button>
           <Button
             variant="contained"
             color="secondary"
             onClick={() => history.push('/unauth/join-selfie')}
-          >Join</Button>
+          >{t('unauth.join')}</Button>
         </div>
       </div>
     </>

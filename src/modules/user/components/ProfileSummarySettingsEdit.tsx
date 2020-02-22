@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import Typography from '@material-ui/core/Typography'
 import Slider from '@material-ui/core/Slider'
+import {useTranslation} from 'react-i18next'
 
 import {StateApp} from '../../../interfaces/StateApp'
 import './ProfileSummarySettingsEdit.scss'
@@ -28,6 +29,7 @@ const schema = Yup.object().shape({
 })
 
 export function ProfileSummarySettingsEdit() {
+  const {t} = useTranslation()
   const userData = useSelector((state: StateApp) => state.user)
   const [rest, setRest] = useState({
     loading: false,
@@ -73,7 +75,7 @@ export function ProfileSummarySettingsEdit() {
 
       setRest({loading: false, invalidFields: {}})
 
-      openMessageBox('Saved', MessageBoxType.success)
+      openMessageBox(t('common.saved'), MessageBoxType.success)
     } catch (e) {
       const invalidFields = getValidationError(e)
       if (invalidFields) {
@@ -104,7 +106,7 @@ export function ProfileSummarySettingsEdit() {
             autoComplete="off"
           >
             <FormItem>
-              <Typography gutterBottom>Age</Typography>
+              <Typography gutterBottom>{t('common.age')}</Typography>
               <Slider
                 value={props.values.age}
                 onChange={(_, value) => props.handleChange({
@@ -120,7 +122,7 @@ export function ProfileSummarySettingsEdit() {
             </FormItem>
 
             <FormItem>
-              <Typography gutterBottom>Search radius, km</Typography>
+              <Typography gutterBottom>{t('user.searchRadius')}, {t('common.km')}</Typography>
               <Slider
                 value={props.values.searchRadius}
                 onChange={(_, value) => props.handleChange({
@@ -140,7 +142,7 @@ export function ProfileSummarySettingsEdit() {
                 required
                 error={!!(props.errors.searchGender)}
               >
-                <InputLabel htmlFor="searchGender-helper">I want to find</InputLabel>
+                <InputLabel htmlFor="searchGender-helper">{t('user.wantToFindGender')}</InputLabel>
                 <Select
                   onChange={props.handleChange}
                   onBlur={props.handleBlur}
@@ -150,9 +152,9 @@ export function ProfileSummarySettingsEdit() {
                     id: 'searchGender-helper',
                   }}
                 >
-                  <MenuItem value={UserGender.Female}>Female</MenuItem>
-                  <MenuItem value={UserGender.Male}>Male</MenuItem>
-                  <MenuItem value={UserGender.Other}>Other</MenuItem>
+                  <MenuItem value={UserGender.Female}>{t('common.female')}</MenuItem>
+                  <MenuItem value={UserGender.Male}>{t('common.male')}</MenuItem>
+                  <MenuItem value={UserGender.Other}>{t('common.otherGender')}</MenuItem>
                 </Select>
                 <FormHelperText>{props.errors.searchGender}</FormHelperText>
               </FormControl>
@@ -172,7 +174,7 @@ export function ProfileSummarySettingsEdit() {
                 color="primary"
                 disabled={rest.loading === true}
               >
-                {rest.loading ? 'Saving...' : 'Save'}
+                {rest.loading ? t('common.saveWait') : t('common.save')}
               </Button>
             </FormItem>
           </form>

@@ -20,6 +20,10 @@ jest.mock('react-router', () => ({
   }),
 }))
 
+jest.mock('react-intl', () => ({
+  FormattedPlural: () => <div/>,
+}))
+
 it('Profile, view profile', async () => {
   jest.spyOn(restClient , 'get').mockImplementation(() => {
     return Promise.resolve({

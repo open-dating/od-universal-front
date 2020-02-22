@@ -4,6 +4,7 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogActions from '@material-ui/core/DialogActions'
 import Dialog from '@material-ui/core/Dialog'
 import Button from '@material-ui/core/Button'
+import {useTranslation} from 'react-i18next'
 
 function ConfirmBox(
   {
@@ -22,6 +23,14 @@ function ConfirmBox(
     hideCancel: boolean,
   },
 ) {
+  const {t} = useTranslation()
+
+  if (!cancelText) {
+    cancelText = t('sharedComponents.cancelText')
+  }
+  if (!okText) {
+    okText = t('sharedComponents.okText')
+  }
 
   return (
     <Dialog
@@ -52,8 +61,8 @@ function ConfirmBox(
 }
 
 export const promptConfirmBox = (text: string, {
-  okText = 'Ok',
-  cancelText = 'Cancel',
+  okText = '',
+  cancelText = '',
   hideCancel = false,
 } = {}): Promise<any> => {
   const wrapper = document.body.appendChild(document.createElement('div'))

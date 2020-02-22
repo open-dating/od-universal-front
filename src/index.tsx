@@ -6,6 +6,10 @@ import 'url-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+// example: https://github.com/i18next/react-i18next/blob/9240736a5464c8c09254d140be82b6eabc07dd97/example/react/src/App.js
+// import i18n (needs to be bundled ;))
+import './i18n'
+
 import App from './App'
 // import * as serviceWorker from './serviceWorker'
 

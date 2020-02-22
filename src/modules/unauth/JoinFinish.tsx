@@ -24,6 +24,7 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
+import {useTranslation} from 'react-i18next'
 
 import {FormItem} from '../../shared-components/FormItem'
 import {post} from '../../services/api/restClient'
@@ -94,6 +95,7 @@ export function JoinFinish() {
   const joinForm = useSelector((state: StateApp) => state.join)
   const dispatch = useDispatch()
   const formikRef = useRef<any>(null)
+  const {t, i18n} = useTranslation()
 
   const form = {
     firstname: '',
@@ -105,7 +107,6 @@ export function JoinFinish() {
     useType: '',
     gender: '',
     showPassword: false,
-    language: navigator.language,
     habits: Object.fromEntries(USER_HABITS_LIST.map(v => [v.name, UserHabitPeriodicity.Never])),
     acceptedUseDataInScience: false,
     bio: '',
@@ -135,7 +136,7 @@ export function JoinFinish() {
       setRest({loading: true, invalidFields: {}})
 
       await promptConfirmBox(
-        'We need to get your location for show you in search',
+        t('unauth.locationInfoProm'),
         {hideCancel: true},
       )
 
@@ -156,6 +157,7 @@ export function JoinFinish() {
           type: 'Point',
           coordinates,
         },
+        language: i18n.language,
       }
 
       dispatch(saveJoinData({...joinForm, form}))
@@ -197,13 +199,13 @@ export function JoinFinish() {
               autoComplete="off"
             >
               <FormTitle
-                title="Main info"
-                subTitle="Your age, height and etc."
+                title={t('unauth.formTitleMainInfo')}
+                subTitle={t('unauth.formTitleMainInfoSub')}
               />
               <FormItem>
                 <TextField
                   required
-                  label="First name"
+                  label={t('common.firstname')}
                   name="firstname"
                   onChange={props.handleChange}
                   onBlur={props.handleBlur}
@@ -218,7 +220,7 @@ export function JoinFinish() {
                 >
                   <DatePicker
                     name="bday"
-                    label="Birthday"
+                    label={t('common.birthday')}
                     format="dd.MM.yyyy"
                     value={props.values.bday}
                     required
@@ -240,7 +242,7 @@ export function JoinFinish() {
                   required
                   error={!!(props.errors.gender)}
                 >
-                  <InputLabel htmlFor="gender-helper">gender</InputLabel>
+                  <InputLabel htmlFor="gender-helper">{t('common.gender')}</InputLabel>
                   <Select
                     onChange={props.handleChange}
                     onBlur={props.handleBlur}
@@ -250,9 +252,9 @@ export function JoinFinish() {
                       id: 'gender-helper',
                     }}
                   >
-                    <MenuItem value={UserGender.Female}>Female</MenuItem>
-                    <MenuItem value={UserGender.Male}>Male</MenuItem>
-                    <MenuItem value={UserGender.Other}>Other</MenuItem>
+                    <MenuItem value={UserGender.Female}>{t('common.female')}</MenuItem>
+                    <MenuItem value={UserGender.Male}>{t('common.male')}</MenuItem>
+                    <MenuItem value={UserGender.Other}>{t('common.otherGender')}</MenuItem>
                   </Select>
                   <FormHelperText>{props.errors.gender}</FormHelperText>
                 </FormControl>
@@ -263,7 +265,7 @@ export function JoinFinish() {
                   required
                   error={!!(props.errors.useType)}
                 >
-                  <InputLabel htmlFor="useType-helper">Use type</InputLabel>
+                  <InputLabel htmlFor="useType-helper">{t('common.useType')}</InputLabel>
                   <Select
                     onChange={props.handleChange}
                     onBlur={props.handleBlur}
@@ -273,8 +275,8 @@ export function JoinFinish() {
                       id: 'useType-helper',
                     }}
                   >
-                    <MenuItem value={UserUseType.Rel}>Relationship</MenuItem>
-                    <MenuItem value={UserUseType.Other}>Other</MenuItem>
+                    <MenuItem value={UserUseType.Rel}>{t('common.useTypeRel')}</MenuItem>
+                    <MenuItem value={UserUseType.Other}>{t('common.useTypeOther')}</MenuItem>
                   </Select>
                   <FormHelperText>{props.errors.useType}</FormHelperText>
                 </FormControl>
@@ -288,12 +290,12 @@ export function JoinFinish() {
                   <Typography
                     className={classes.typography}
                   >
-                    Height, cm *
+                    {t('common.height')}, {t('common.cm')} *
                   </Typography>
                   <Grid container spacing={2}>
                     <Grid item xs>
                       <Slider
-                        defaultValue={props.values.height}
+                        value={props.values.height}
                         onChange={(_, value) => setSliderValueWithDebounce(props, {
                           target: {
                             name: 'height',
@@ -333,12 +335,12 @@ export function JoinFinish() {
                     gutterBottom
                     className={classes.typography}
                   >
-                    Weigth, kg *
+                    {t('common.weight')}, {t('common.kg')} *
                   </Typography>
                   <Grid container spacing={2}>
                     <Grid item xs>
                       <Slider
-                        defaultValue={props.values.weight}
+                        value={props.values.weight}
                         onChange={(_, value) => setSliderValueWithDebounce(props, {
                           target: {
                             name: 'weight',
@@ -370,8 +372,8 @@ export function JoinFinish() {
               </FormItem>
 
               <FormTitle
-                title="Your habits"
-                subTitle="Used for find people with with similar interests"
+                title={t('unauth.formTitleHabits')}
+                subTitle={t('unauth.formTitleHabitsSub')}
               />
               <HabitsFormTable
                 fields={USER_HABITS_LIST}
@@ -380,13 +382,13 @@ export function JoinFinish() {
               />
 
               <FormTitle
-                title="Login information"
-                subTitle="Used for auth in app and site"
+                title={t('unauth.formTitleLoginInfo')}
+                subTitle={t('unauth.formTitleLoginInfoSub')}
               />
               <FormItem>
                 <TextField
                   required
-                  label="Email"
+                  label={t('unauth.email')}
                   name="email"
                   type="email"
                   onChange={props.handleChange}
@@ -402,7 +404,7 @@ export function JoinFinish() {
                   required
                   error={!!(props.errors.pass)}
                 >
-                  <InputLabel htmlFor="adornment-password">Password</InputLabel>
+                  <InputLabel htmlFor="adornment-password">{t('unauth.password')}</InputLabel>
                   <Input
                     name="pass"
                     id="adornment-password"
@@ -432,7 +434,7 @@ export function JoinFinish() {
               </FormItem>
 
               <FormTitle
-                title="Agreements and assistance"
+                title={t('unauth.formTitleAgreementsAndAssistance')}
                 subTitle=""
               />
               <FormItem>
@@ -444,9 +446,7 @@ export function JoinFinish() {
                       onChange={props.handleChange}
                     />
                   }
-                  label="I authorize the transfer of my depersonalized data to scientists for the purpose of
-                  conducting research in the name of good
-                  (this checkbox is not necessary)"
+                  label={t('unauth.acceptOptionalDataScience')}
                 />
               </FormItem>
               <FormItem>
@@ -462,7 +462,7 @@ export function JoinFinish() {
                         onChange={props.handleChange}
                       />
                     }
-                    label="I promise to be tolerant and polite towards all users"
+                    label={t('unauth.tolerantPromise')}
                   />
                   {props.errors.tolerantPromise && <FormHelperText>{props.errors.tolerantPromise}</FormHelperText>}
                 </FormControl>
@@ -480,7 +480,7 @@ export function JoinFinish() {
                         onChange={props.handleChange}
                       />
                     }
-                    label="I promise not to deceive other people and use the service only in the name of good"
+                    label={t('unauth.honestyAndGoodnessPromise')}
                   />
                   {props.errors.honestyAndGoodnessPromise && <FormHelperText>{props.errors.honestyAndGoodnessPromise}</FormHelperText>}
                 </FormControl>
@@ -498,7 +498,7 @@ export function JoinFinish() {
                         onChange={props.handleChange}
                       />
                     }
-                    label="I accept Terms of Service"
+                    label={t('unauth.tos')}
                   />
                   {props.errors.tos && <FormHelperText>{props.errors.tos}</FormHelperText>}
                 </FormControl>
@@ -518,7 +518,7 @@ export function JoinFinish() {
                   color="primary"
                   disabled={rest.loading === true}
                 >
-                  {rest.loading ? 'Sign up...' : 'Sign up'}
+                  {rest.loading ? t('unauth.signUpWait') : t('unauth.signUp')}
                 </Button>
               </FormItem>
             </form>

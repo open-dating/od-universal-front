@@ -9,8 +9,8 @@
     "build": "react-app-rewired build",
     "build-cordova": "cross-env NODE_ENV.REACT_APP_CORDOVA=true npm run build",
     "test": "react-app-rewired test",
-    "lint": "eslint src/** --ext .ts,.tsx",
-    "lint:fix": "eslint src/** --ext .ts,.tsx --fix"
+    "lint": "eslint src --ext .ts,.tsx,.js",
+    "lint:fix": "eslint src --ext .ts,.tsx,.js --fix"
   },
   "dependencies": {
     "@date-io/date-fns": "^1.3.11",
@@ -34,6 +34,7 @@
     "date-fns": "^2.0.0-beta.5",
     "formik": "^2.1.2",
     "history": "^4.10.1",
+    "i18next-browser-languagedetector": "^4.0.1",
     "jest": "^24.9.0",
     "jss-preset-default": "^10.0.0",
     "leaflet": "^1.6.0",
@@ -43,6 +44,8 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-easy-swipe": "0.0.18",
+    "react-i18next": "^11.3.2",
+    "react-intl": "^3.12.0",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
@@ -62,8 +65,10 @@
     "@testing-library/user-event": "^7.1.2",
     "@types/chart.js": "^2.9.12",
     "@types/cordova": "0.0.34",
+    "@types/i18next": "^13.0.0",
     "@types/jest": "^24.0.25",
     "@types/leaflet": "^1.5.8",
+    "@types/react-i18next": "^8.1.0",
     "@types/react-redux": "^7.1.5",
     "@types/react-router-dom": "^5.1.3",
     "@types/redux-mock-store": "^1.0.1",

@@ -1,8 +1,11 @@
 import React from 'react'
+import {useTranslation} from 'react-i18next'
 
 import {Photo} from '../interfaces/Photo'
 
 export function PhotosChangerPhotoCaption(props: any) {
+  const {t} = useTranslation()
+
   const {photo}: {photo: Photo} = props
   const emojiGood = '👎'
   const emojiBad = '👍'
@@ -13,10 +16,10 @@ export function PhotosChangerPhotoCaption(props: any) {
     }
 
     if (photo.base64) {
-      return {isBad: null, msg: 'Processing...'}
+      return {isBad: null, msg: t('sharedComponents.photoProcessing')}
     }
 
-    return {isBad: null, msg: 'Done'}
+    return {isBad: null, msg: t('sharedComponents.photoGood')}
   }
 
   const {isBad, msg} = getCaption(photo)

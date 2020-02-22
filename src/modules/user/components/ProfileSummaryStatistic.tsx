@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
+import {useSelector} from 'react-redux'
 
 import './ProfileSummaryStatistic.scss'
-import {useSelector} from 'react-redux'
 import {StateApp} from '../../../interfaces/StateApp'
 import {get} from '../../../services/api/restClient'
 import {urlsStatistic} from '../../../services/api/urls'
@@ -43,13 +43,21 @@ export function ProfileSummaryStatistic() {
           titles={[
             'My likes',
             'My passes',
+          ]}
+          cols={[
+            stat.item.likes,
+            stat.item.passes,
+          ]}
+        />
+      </div>)}
+      {stat.item && (<div>
+        <LineChart
+          titles={[
             'Matches',
             'Liked me',
             'Pass me',
           ]}
           cols={[
-            stat.item.likes,
-            stat.item.passes,
             stat.item.matches,
             stat.item.likesFromOtherUsers,
             stat.item.passesFromOtherUsers,

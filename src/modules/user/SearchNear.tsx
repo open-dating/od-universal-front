@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import Container from '@material-ui/core/Container'
+import {useTranslation} from 'react-i18next'
 
 import './SearchNear.scss'
 import {get, post} from '../../services/api/restClient'
@@ -21,6 +22,7 @@ export function SearchNear() {
   })
   const userData = useSelector((state: StateApp) => state.user)
   const tour = useSelector((state: StateApp) => state.tour)
+  const {t} = useTranslation()
 
   const accessToken = userData?.jwt?.accessToken
 
@@ -94,7 +96,7 @@ export function SearchNear() {
       )}
       {!user && !fetchState.loading && !fetchState.error && (
         <Container className="search-near__message">
-          <div>People not found, please try layer</div>
+          <div>{t('user.peopleNotFound')}</div>
         </Container>
       )}
       {!user && fetchState.error && (
@@ -118,8 +120,8 @@ export function SearchNear() {
           />
           {
             /*
-            key next_wrap и next_card нужны
-            чтобы не было глюков при свайпе и обновлении данных
+            key next_wrap and next_card for
+            so that there are no glitches when swiping and updating data
              */
             nextUser && (
               <div

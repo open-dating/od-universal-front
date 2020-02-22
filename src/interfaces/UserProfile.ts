@@ -17,6 +17,7 @@ export interface UserProfile {
   role: string
   gender: UserGender
   useType: UserUseType
+  language: string
   complaintsToUser?: Complaint[]
   setting?: {
     searchRadius: number

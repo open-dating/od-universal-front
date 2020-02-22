@@ -17,6 +17,7 @@ class User implements UserProfile {
   unreadDialogs = []
   useType = UserUseType.Other
   weight = 13
+  language = 'en'
 }
 
 export function createUserMock(id: number): User {

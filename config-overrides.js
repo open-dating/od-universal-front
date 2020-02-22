@@ -16,6 +16,9 @@ process.env['REACT_APP_LAST_BUILD'] = new Date().toUTCString()
 
 process.env['REACT_APP_FULL_VERSION'] = `${pkg.version}:${process.env.REACT_APP_GIT_BRANCH}:${process.env.REACT_APP_GIT_LAST_COMMIT}`
 
+console.log('REACT_APP_HOST=', process.env['REACT_APP_HOST'])
+console.log('REACT_APP_FULL_VERSION=', process.env['REACT_APP_FULL_VERSION'])
+
 /**
  * @help https://github.com/timarney/react-app-rewired/tree/f81e1f482a644ca7baff752776adafeb760cf5da#extended-configuration-options
  * @param config
@@ -25,7 +28,7 @@ process.env['REACT_APP_FULL_VERSION'] = `${pkg.version}:${process.env.REACT_APP_
 module.exports = function override(config, env) {
   if (process.env.REACT_APP_CORDOVA) {
     config.optimization.minimize = false
-    config.output.publicPath = 'file:///android_asset/www/'
+    config.output.publicPath = '' // 'file:///android_asset/www/'
     config.plugins.push(
       new HtmlWebpackTagsPlugin({
         tags: ['cordova.js'],

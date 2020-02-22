@@ -18,6 +18,7 @@ import {ProfileSummary} from './modules/user/ProfileSummary'
 import {Profile} from './modules/user/Profile'
 import {Complaints} from './modules/admin/Complaints'
 import {DemographyByCountries} from './modules/statistic/DemographyByCountries'
+import {ResetPassword} from './modules/unauth/ResetPassword'
 
 history.listen(() => {
   window.scrollTo(0, 0)
@@ -83,6 +84,7 @@ export function Routes() {
               <Route path="/unauth/join-selfie" component={JoinSelfie}/>
               <Route path="/unauth/join-photos" component={JoinPhotos}/>
               <Route path="/unauth/join-finish" component={JoinFinish}/>
+              <Route path="/unauth/reset-password" component={ResetPassword}/>
               <Route path="/unauth/*" component={Welcome}/>
             </Switch>
           </Route>

@@ -3,6 +3,7 @@ import {Provider} from 'react-redux'
 import configureStore from 'redux-mock-store'
 import {render} from 'react-dom'
 import {act, Simulate} from 'react-dom/test-utils'
+import thunkMiddleware from 'redux-thunk'
 
 import {Signin} from './Signin'
 import * as restClient from '../../services/api/restClient'
@@ -14,7 +15,11 @@ jest.mock('react-router-dom', () => ({
   }),
 }))
 
-const mockStore = configureStore()
+jest.mock('../../shared-components/ToolbarMain', () => ({
+  ToolbarMain: () => <div/>,
+}))
+
+const mockStore = configureStore([thunkMiddleware])
 
 it('Signin, login in app', async () => {
   const store = mockStore({})
@@ -57,8 +62,6 @@ it('Signin, login in app', async () => {
   })
 
   expect(lastHistoryValue).toBe('/users/search-near')
-
-  expect(container.textContent).toContain('Sign in...')
 
   // @ts-ignore
   restClient.post.mockRestore()

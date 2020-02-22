@@ -13,7 +13,7 @@ jobs:
 
       - name: Build and test
         run: |
-          make build-docker-image REACT_APP_HOST=${{ secrets.REACT_APP_HOST }}
+          make build-docker-image
 
       - name: Login in docker registry
         run: |

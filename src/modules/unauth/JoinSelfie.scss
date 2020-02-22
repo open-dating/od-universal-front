@@ -48,10 +48,10 @@
   .selfie__actions {
     display: flex;
     justify-content: space-around;
+    padding: 0;
 
     button {
-      margin-left: 4px; // не увеличивать
-      margin-right: 4px; // не увеличивать
+      margin: 4px;
     }
 
     .selfie__actions___subactions__upload-btn {

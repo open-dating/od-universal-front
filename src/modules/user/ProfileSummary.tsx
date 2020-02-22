@@ -5,6 +5,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Container from '@material-ui/core/Container'
 import {useSelector, useDispatch} from 'react-redux'
+import {useTranslation} from 'react-i18next'
 
 import './ProfileSummary.scss'
 import {get} from '../../services/api/restClient'
@@ -27,6 +28,7 @@ export function ProfileSummary() {
     loading: false,
     error: null,
   })
+  const {t} = useTranslation()
 
   const token = userData.jwt?.accessToken
 
@@ -84,7 +86,7 @@ export function ProfileSummary() {
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon/>}
             >
-              Info
+              {t('user.info')}
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <ProfileSummaryInfo/>
@@ -98,7 +100,7 @@ export function ProfileSummary() {
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon/>}
             >
-              Photos
+              {t('user.photos')}
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <ProfileSummaryPhotos/>
@@ -112,7 +114,7 @@ export function ProfileSummary() {
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon/>}
             >
-              Search settings
+              {t('user.searchSettings')}
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <ProfileSummarySettingsEdit/>
@@ -126,7 +128,7 @@ export function ProfileSummary() {
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon/>}
             >
-              Statistic
+              {t('user.statistic')}
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <ProfileSummaryStatistic/>

@@ -16,8 +16,10 @@ export const urlsUser = {
   myProfile: () => `${HOST}/api/v1/user/my-profile`,
   myProfileSave: () => `${HOST}/api/v1/user/my-profile`,
   settingsSave: () => `${HOST}/api/v1/user/settings`,
+  langSave: () => `${HOST}/api/v1/user/lang`,
   saveLocation: () => `${HOST}/api/v1/user/location`,
   saveFcm: () => `${HOST}/api/v1/user/fcm`,
+  resetPass: () => `${HOST}/api/v1/auth/auto-change-pass`,
 }
 
 export const urlsComplaint = {
@@ -50,4 +52,8 @@ export const urlsStatistic = {
   user: (relatedToUserId: number) => `${HOST}/api/v1/statistic/user/${relatedToUserId}`,
   publicCountriesBounds: () => `${HOST}/api/v1/statistic/public/countries/bounds`,
   publicDemographyByCountries: () => `${HOST}/api/v1/statistic/public/demography/by-countries`,
+}
+
+export const urlsSystem = {
+  removeProfile: (id: number)=> `${HOST}/api/v1/system/user/${id}`,
 }

@@ -1,18 +1,24 @@
 @import '../../../config/variables';
 
 .toolbar-dialog-message {
-  background-color: white;
-  box-shadow: $toolbarShadow;
   border-bottom: none;
   flex-grow: 1;
   height: $toolbarHeight;
+  z-index: 1000;
 
   .toolbar-dialog-message__bar {
     height: $toolbarHeight;
     min-height: $toolbarHeight;
+    background-color: white;
+    box-shadow: $toolbarShadow;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 
     .toolbar-dialog-message__bar__title {
-      width: calc(100% - 60px);
+      width: calc(100% - 115px);
       display: flex;
       align-items: center;
       justify-content: flex-start;

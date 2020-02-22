@@ -7,25 +7,22 @@ import {CardContent} from '@material-ui/core'
 import CancelIcon from '@material-ui/icons/Cancel'
 import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
+import {useTranslation} from 'react-i18next'
 
 import './UserCard.scss'
-import {createCountFormatter} from '../../../utils/text'
 import {UserCardPhoto} from './UserCardPhoto'
 import {UserCardDialog} from './UserCardDialog'
 import {Complaint} from '../../../shared-components/Complaint'
 import {UserCardDnnHeart} from './UserCardDnnHeart'
-import {SwipeContainer} from './SwipeContainer'
+import {SwipeWrapper} from './SwipeWrapper'
 import {UserCardTour} from './UserCardTour'
 import {UserProfile} from '../../../interfaces/UserProfile'
 import {ImDialog} from '../../../interfaces/ImDialog'
 import {StateTour} from '../../../interfaces/StateTour'
 import {openMessageBox} from '../../../shared-components/MessageBox'
-
-const formatAgeCount = createCountFormatter({
-  few: 'years',
-  one: 'year',
-  two: 'years',
-})
+import {metersToUnit} from '../../../utils/metersToUnit'
+import {UserRole} from '../../../enums/user-role.enum'
+import {FormattedPlural} from 'react-intl'
 
 const swipeEnableOnMoveByX = 60
 
@@ -52,7 +49,7 @@ export function UserCard(
     showTour?: boolean
   },
 ) {
-
+  const {t} = useTranslation()
   const swipeXPosRef = useRef(0)
   let swipeXPos = swipeXPosRef.current
   const cardRef = useRef<HTMLDivElement>(null)
@@ -279,7 +276,7 @@ export function UserCard(
 
   return (
     <div className="user-card">
-      <SwipeContainer
+      <SwipeWrapper
         disableActions={disableActions}
         onSwipeStart={onSwipeStart}
         onSwipeMove={onSwipeMove}
@@ -322,10 +319,10 @@ export function UserCard(
                   <React.Fragment>
                     <div className="user-profile__card__header__info">
                       <div>
-                        {`${(user.locationDistance || 0).toFixed(2)} km`}
+                        {user.height} {t('common.cm')}
                       </div>
                       <div>
-                        {user.height} cm, {user.weight} kg
+                        {`${metersToUnit(user.locationDistance, 'km')} ${t('common.km')}`}
                       </div>
                     </div>
                   </React.Fragment>
@@ -345,10 +342,17 @@ export function UserCard(
                   <React.Fragment>
                     <div className="user-profile__card__header__info">
                       <div>
-                        habits
+                        {user.weight} {t('common.kg')}
                       </div>
                       <div>
-                        {user.age} {formatAgeCount(user.age)}
+                        {user.age} <FormattedPlural
+                          value={user.age}
+                          other={t('common.year.other')}
+                          zero={t('common.year.zero')}
+                          one={t('common.year.one')}
+                          two={t('common.year.two')}
+                          few={t('common.year.few')}
+                        />
                       </div>
                     </div>
                   </React.Fragment>
@@ -368,16 +372,16 @@ export function UserCard(
                 disableSpacing
                 className="user-profile__card__actions"
               >
-                {user.role !== 'admin' && (
+                {user.role !== UserRole.Admin && (
                   <Button
                     onClick={openComplaint}
                   >
-                    Complaint
+                    {t('common.complaint')}
                   </Button>
                 )}
-                {user.role === 'admin' && (
+                {user.role === UserRole.Admin && (
                   <Button>
-                    Core team
+                    {t('common.roleAdmin')}
                   </Button>
                 )}
               </CardActions>
@@ -434,7 +438,7 @@ export function UserCard(
             onDismissCb={closeComplaint}
           />}
         </div>
-      </SwipeContainer>
+      </SwipeWrapper>
     </div>
   )
 }

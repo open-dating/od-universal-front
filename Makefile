@@ -6,8 +6,7 @@ DOCKER_USERNAME ?= "opendating"
 
 .PHONY: build-docker-image
 build-docker-image:
-	docker build --no-cache=$(no-cache) . -t $(CONT_NAME) \
-	--build-arg REACT_APP_HOST="$(REACT_APP_HOST)"
+	docker build --no-cache=$(no-cache) . -t $(CONT_NAME)
 
 .PHONY: run-docker-image
 run-docker-image:
@@ -17,7 +16,7 @@ run-docker-image:
 
 .PHONY: build-n-run
 build-n-run:
-	@$(MAKE) build-docker-image REACT_APP_HOST=""
+	@$(MAKE) build-docker-image
 	@$(MAKE) run-docker-image
 
 .PHONY: push-docker-image

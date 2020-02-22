@@ -27,16 +27,16 @@ export async function registerInFCMAndGetToken(): Promise<string> {
   })
 
   push.on('notification', (data) => {
-    if (data && data.additionalData) {
-      // redierect to dialog on notify tap
-      if (data.additionalData.type === FCMType.match && data.additionalData.foreground === false) {
-        history.push(`/im/dialog/${data.additionalData.dialogId}`)
-      }
+    const isFromOnNotifyTapFromPhoneTaskBar = Boolean(data.additionalData && data.additionalData.foreground === false)
 
-      // redierect to dialog on notify tap
-      if (data.additionalData.type === FCMType.message && data.additionalData.foreground === false) {
-        history.push(`/im/dialog/${data.additionalData.dialogId}`)
-      }
+    // redierect to dialog on notify tap
+    if (isFromOnNotifyTapFromPhoneTaskBar && data.additionalData.type === FCMType.match && data.additionalData.foreground === false) {
+      history.push(`/im/dialog/${data.additionalData.dialogId}`)
+    }
+
+    // redierect to dialog on notify tap
+    if (isFromOnNotifyTapFromPhoneTaskBar && data.additionalData.type === FCMType.message && data.additionalData.foreground === false) {
+      history.push(`/im/dialog/${data.additionalData.dialogId}`)
     }
 
     /*
@@ -65,7 +65,7 @@ export function saveFCMToken(accessToken: any) {
     return
   }
 
-  if (token && accessToken) {
+  if (token && String(token).trim().length > 0 && accessToken) {
     // save token on server
     patch(urlsUser.saveFcm(), {
       remove: false,

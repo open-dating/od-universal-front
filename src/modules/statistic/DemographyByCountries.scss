@@ -3,16 +3,35 @@
 @import "~leaflet/dist/leaflet.css";
 
 .demography-by-countries {
-  position: relative;
-  height: calc(100vh - #{$toolbarHeight});
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
 
-  .demography-by-countries__map {
-    height: calc(100vh - #{$toolbarHeight});
+  .demography-by-countries__header {
+    height: #{$toolbarHeight};
+    display: flex;
     width: 100%;
+    position: relative;
+  }
 
-    pre {
-      max-height: 200px;
-      overflow: auto;
+  .demography-by-countries__content {
+    flex: 1 1 0;
+    order: 2;
+    position: relative;
+
+    .demography-by-countries__content__map {
+      height: 100%;
+      width: 100%;
+
+      pre {
+        max-height: 200px;
+        overflow: auto;
+      }
     }
   }
 

@@ -9,9 +9,11 @@ import BarChartIcon from '@material-ui/icons/BarChart'
 import {useHistory} from 'react-router'
 import {useSelector} from 'react-redux'
 import SentimentSatisfiedAltIcon from '@material-ui/icons/SentimentSatisfiedAlt'
+import {useTranslation} from 'react-i18next'
 
 import {StateApp} from '../interfaces/StateApp'
 import './ToolbarMain.scss'
+import {LangChanger} from './LangChanger'
 
 const valuePathMap: { [key: string]: string } = {
   'welcome': '/unauth/welcome',
@@ -25,6 +27,7 @@ export function ToolbarMain() {
   const userData = useSelector((state: StateApp) => state.user)
   const router = useSelector((state: StateApp) => state.router)
   const history = useHistory()
+  const {t} = useTranslation()
 
   const isUserLogged = Boolean(userData.jwt?.accessToken)
 
@@ -43,6 +46,7 @@ export function ToolbarMain() {
   return (
     <div className="toolbar-main">
       <BottomNavigation
+        className="toolbar-main__nav"
         value={selected}
         onChange={onChange}
         showLabels={false}
@@ -50,7 +54,7 @@ export function ToolbarMain() {
         {isUserLogged && (
           <BottomNavigationAction
             value="im"
-            label="Dialogs"
+            label={t('sharedComponents.dialogs')}
             icon={(
               <Badge
                 color="secondary"
@@ -63,19 +67,19 @@ export function ToolbarMain() {
           />)}
         {isUserLogged && (<BottomNavigationAction
           value="search"
-          label="Search"
+          label={t('sharedComponents.search')}
           icon={<NotListedLocationIcon/>}
         />)}
         {isUserLogged && (<BottomNavigationAction
           value="profile"
-          label="Profile"
+          label={t('sharedComponents.profile')}
           icon={<PermIdentityIcon/>}
         />)}
 
         {!isUserLogged && (
           <BottomNavigationAction
             value="welcome"
-            label="Join or sign in"
+            label={t('sharedComponents.welcome')}
             icon={<SentimentSatisfiedAltIcon/>}
           />
         )}
@@ -83,10 +87,16 @@ export function ToolbarMain() {
         <BottomNavigationAction
           className="toolbar-main__only-full-width"
           value="statistic"
-          label="Statistic"
+          label={t('sharedComponents.statistic')}
           icon={<BarChartIcon/>}
         />
+
       </BottomNavigation>
+      <div
+        className="toolbar-main__lang-changer toolbar-main__only-full-width"
+      >
+        <LangChanger/>
+      </div>
     </div>
   )
 }

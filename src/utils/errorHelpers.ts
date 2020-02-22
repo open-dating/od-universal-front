@@ -14,29 +14,31 @@ export function getValidationError(e: AxiosError): FormikErrors<FormikValues> | 
 }
 
 export function recognizeError(e: any): string {
-  let msg = ''
+  let msg: string = ''
 
-  if (e.response && e.response.data && e.response.data.error) {
+  if (e && e.response && e.response.data && e.response.data.error) {
     msg = e.response.data.error
-  } else if (e.response && e.response.data && e.response.data.message) {
+  } else if (e && e.response && e.response.data && e.response.data.message) {
     msg = e.response.data.message
-  } else if (e.response && e.response.data) {
+  } else if (e && e.response && e.response.data) {
     msg = e.response.data.toString().substring(0, 100).replace(/<[^>]*>?/gm, '')
-  } else if (e.message) {
+  } else if (e && e.message) {
     msg = e.message.toString()
+  } else if (typeof e === 'string' || typeof e === 'number') {
+    msg = String(e)
   } else {
     msg = JSON.stringify(e || 'Unknown error')
   }
 
   // debugger
 
-  if (e.response && e.response.status && e.response.status === 502) {
-    msg = 'Try later, service temprary unvalable'
+  if (e && e.response && e.response.status && e.response.status === 502) {
+    msg = 'Try later, service temporarily unavailable'
   }
 
   if (msg.indexOf('Network Error') > -1) {
-    msg = 'No internet'
+    msg = 'No internet connection or server is down'
   }
 
-  return msg || 'Unknown error'
+  return msg
 }

@@ -3,11 +3,22 @@
 .toolbar-main {
   height: $toolbarHeight;
   min-height: $toolbarHeight;
-  position: sticky;
+  position: relative;
   width: 100%;
   z-index: 1000;
   border: none;
-  box-shadow: $toolbarShadow;
+
+  .toolbar-main__nav {
+    height: $toolbarHeight;
+    min-height: $toolbarHeight;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    border: none;
+    box-shadow: $toolbarShadow;
+  }
 
   @media screen and (max-width: 800px) {
     .toolbar-main__only-full-width {
@@ -15,4 +26,10 @@
     }
   }
 
+  .toolbar-main__lang-changer {
+    position: fixed;
+    top: 10px;
+    right: 16px;
+    z-index: 1200;
+  }
 }

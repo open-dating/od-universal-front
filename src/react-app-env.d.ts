@@ -25,7 +25,7 @@ declare module 'react-easy-swipe' {
     tagName?: string
     className?: string
     style?: object
-    children: React.ReactNode
+    children: JSX.Element
     allowMouseEvents?: boolean,
     onSwipeUp?: (event: Event) => void
     onSwipeDown?: (event: Event) => void

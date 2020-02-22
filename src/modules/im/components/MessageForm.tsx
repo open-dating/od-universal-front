@@ -5,6 +5,7 @@ import SendIcon from '@material-ui/icons/Send'
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Container from '@material-ui/core/Container'
+import {useTranslation} from 'react-i18next'
 
 import './MessageForm.scss'
 import {ImMessageForm} from '../../../interfaces/ImMessageForm'
@@ -21,6 +22,7 @@ export function MessageForm(
     uploadImage: (f: File) => Promise<any>,
   },
 ) {
+  const {t} = useTranslation()
   const [form, setForm] = useState<ImMessageForm>({
     image: null,
     text: '',
@@ -94,7 +96,7 @@ export function MessageForm(
     })
   }
 
-  const imageUploaded = form.image && form.image?.url
+  const imageUploaded = Boolean(form.image && form.image.url)
 
   return (
     <div className="message-form">
@@ -143,7 +145,7 @@ export function MessageForm(
               value={form.text}
               multiline
               onChange={handleChange}
-              placeholder="Написать сообщение"
+              placeholder={t('im.writeMsgPlaceholder')}
               rowsMax={maxRow}
             />
           </div>

@@ -23,7 +23,7 @@ npm run test
 
 ## Roadmap
 * [ ] create and add logo
-* [ ] check fcm notifications
+* [x] check fcm notifications
 * [ ] add donat page
 * [ ] add tos page
 * [ ] check translate
@@ -31,4 +31,4 @@ npm run test
 * [ ] add more user profile fields and settings for edit
 * [ ] publish version for android in Google Play
 * [ ] write more tests
-* [ ] add multilang support
+* [x] add multilang support

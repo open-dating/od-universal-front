@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent'
 import Card from '@material-ui/core/Card'
 import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
+import {useTranslation} from 'react-i18next'
 
 import {PhotosChanger} from '../../shared-components/PhotosChanger'
 import {StateApp} from '../../interfaces/StateApp'
@@ -21,6 +22,7 @@ export function JoinPhotos() {
   const history = useHistory()
   const [disabled, setDisabled] = useState(true)
   const [photos, setPhotos] = useState<Photo[]>([])
+  const {t} = useTranslation()
 
   const onChange = (photos: Photo[]) => {
     setPhotos(photos)
@@ -43,8 +45,7 @@ export function JoinPhotos() {
         <CardContent>
           <SmallTip>
             <>
-              Upload at least one, or better a few photos,
-              they will be available to all users when viewing your profile
+              {t('unauth.uploadPhotosTip')}
             </>
           </SmallTip>
           <PhotosChanger
@@ -61,7 +62,7 @@ export function JoinPhotos() {
             onClick={next}
             disabled={disabled}
           >
-            Next
+            {t('unauth.next')}
           </Button>
         </CardActions>
       </Card>

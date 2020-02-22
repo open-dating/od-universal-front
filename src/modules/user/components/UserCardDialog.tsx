@@ -6,6 +6,8 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
+import {useTranslation} from 'react-i18next'
+
 import {ImMessageForm} from '../../../interfaces/ImMessageForm'
 import {ImDialog} from '../../../interfaces/ImDialog'
 import {openMessageBox} from '../../../shared-components/MessageBox'
@@ -21,6 +23,7 @@ export function UserCardDialog(
     onDoneCb: () => void
   },
 ) {
+  const {t} = useTranslation()
   const [loading, setLoading] = useState(false)
   const [form, setForm] = useState<ImMessageForm>({
     image: null,
@@ -63,17 +66,17 @@ export function UserCardDialog(
       disableBackdropClick
       disableEscapeKeyDown
     >
-      <DialogTitle>Hooray!</DialogTitle>
+      <DialogTitle>{t('user.matchDialogTitle')}</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          Its a match! You can sent smt good...
+          {t('user.matchDialogTip')}
         </DialogContentText>
         <TextField
           name="text"
           value={form.text}
           multiline
           onChange={handleChange}
-          placeholder="Write message..."
+          placeholder={t('user.matchDialogPlaceholder')}
           rowsMax={4}
           margin="dense"
           fullWidth
@@ -85,14 +88,14 @@ export function UserCardDialog(
           color="secondary"
           disabled={loading}
         >
-          Skip
+          {t('user.matchDialogSkip')}
         </Button>
         <Button
           onClick={handleSubmit}
           color="primary"
           disabled={loading}
         >
-          Send
+          {t('user.matchDialogSend')}
         </Button>
       </DialogActions>
     </Dialog>

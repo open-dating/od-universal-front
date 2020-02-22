@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react'
 import * as L from 'leaflet'
 import {useSelector} from 'react-redux'
+import {useTranslation} from 'react-i18next'
 
 import './DemographyByCountries.scss'
 import {StateFetchAnyItem} from '../../interfaces/StateFetchAnyItem'
@@ -18,6 +19,7 @@ export function DemographyByCountries() {
   const [bounds, setBounds] = useState()
   const mapElement = useRef<HTMLDivElement>(null)
   const map = useRef<L.Map>()
+  const {t} = useTranslation()
 
   const geometry = userData.profile?.location
 
@@ -100,20 +102,25 @@ export function DemographyByCountries() {
         pointToLayer: function (feature, latlng) {
           return L.marker(latlng, {
             icon: L.divIcon({
-              html: 'Me',
+              html: String(t('statistic.me')),
               iconSize: [18, 16],
             }),
           })
         },
       }).addTo(map.current as unknown as L.Map)
     }
+
+    // eslint-disable-next-line
   }, [stat, bounds, geometry])
 
   return (
     <div className="demography-by-countries">
       {stat.loading && (<SpinnerPrefetch/>)}
-      {stat.error && (<FetchError error={stat.error}/>)}
-      <div ref={mapElement} className="demography-by-countries__map"/>
+      <div className="demography-by-countries__header"/>
+      <div className="demography-by-countries__content">
+        {stat.error && (<FetchError error={stat.error}/>)}
+        <div ref={mapElement} className="demography-by-countries__content__map"/>
+      </div>
     </div>
   )
 }

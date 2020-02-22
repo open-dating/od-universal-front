@@ -7,6 +7,7 @@ import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate'
 import Container from '@material-ui/core/Container'
 import {useHistory} from 'react-router'
 import {useDispatch, useSelector} from 'react-redux'
+import {useTranslation} from 'react-i18next'
 
 import {UploadBtnBig} from '../../shared-components/UploadBtnBig'
 import {post} from '../../services/api/restClient'
@@ -32,6 +33,7 @@ export function JoinSelfie() {
   const [loading, setLoading] = useState(false)
   const [disabled, setDisabled] = useState(true)
   const stream = useRef<MediaStream|null>(null)
+  const {t} = useTranslation()
 
   const resetScreen = () => {
     setShowScreenshot(false)
@@ -58,13 +60,13 @@ export function JoinSelfie() {
       const {data}: {data: Photo} = await post(urlsPhoto.upload(), fd)
 
       if (data.isNSFW) {
-        throw new Error('Is image is nsfw, please use normal image')
+        throw new Error(t('unauth.imageIsNsfwErr'))
       }
       if (Array.isArray(data.allFacesEncoding) && data.allFacesEncoding.length < 1) {
-        throw new Error('Faces not found on image')
+        throw new Error(t('unauth.imageNoFacesErr'))
       }
       if (Array.isArray(data.allFacesEncoding) && data.allFacesEncoding.length > 1) {
-        throw new Error('Too many peoples on image')
+        throw new Error(t('unauth.imageManyPeopleErr'))
       }
 
       if (Array.isArray(data.allFacesLandmarks) && data.allFacesLandmarks.length > 0) {
@@ -72,7 +74,7 @@ export function JoinSelfie() {
           data.url = await drawLandmarks(data.url, data.allFacesLandmarks[0])
         } catch (e) {
           console.error(e)
-          openMessageBox('Error in browser on draw landmarks on face')
+          openMessageBox(t('unauth.imageDrawErr'))
         }
       }
 
@@ -104,9 +106,7 @@ export function JoinSelfie() {
   useEffect(() => {
     const getWebcamSource = async () => {
       await promptConfirmBox(
-        `First you need to take a selfie or upload a photo
-         where the face is clearly visible, this information is nowhere and will not be visible to anyone.
-         Our photo AI will calculate different metrics that will be used when matching the pair.`,
+        t('unauth.selfieInfoPromt'),
         {hideCancel: true},
       )
 
@@ -130,6 +130,8 @@ export function JoinSelfie() {
         stream.current.getTracks().forEach((track: any) => track.stop())
       }
     }
+
+  // eslint-disable-next-line
   }, [stream])
 
   const next = () => {
@@ -175,7 +177,7 @@ export function JoinSelfie() {
               color="primary"
               onClick={resetScreen}
             >
-              Reset
+              {t('unauth.reset')}
             </Button>
           )}
           {!showScreenshot && !showWebcamFallback && (
@@ -198,7 +200,7 @@ export function JoinSelfie() {
                 onClick={takeScreen}
                 disabled={loading}
               >
-                {loading ? 'Processing...' : 'Take shot'}
+                {loading ? t('unauth.processing') : t('unauth.takeShot')}
               </Button>
             </div>
           )}
@@ -208,7 +210,7 @@ export function JoinSelfie() {
             onClick={next}
             disabled={disabled}
           >
-            Next
+            {t('unauth.next')}
           </Button>
         </CardActions>
       </Card>
