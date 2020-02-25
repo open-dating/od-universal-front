@@ -29,4 +29,6 @@ export interface UserProfile {
     type: 'Point',
     coordinates: number[]
   }
+  bio: string
+  habits?: any
 }

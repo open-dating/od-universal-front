@@ -28,7 +28,7 @@ npm run test
 * [ ] add tos page
 * [ ] check translate
 * [ ] show more user profile fields in user profile
-* [ ] add more user profile fields and settings for edit
+* [x] add more user profile fields and settings for edit
 * [ ] publish version for android in Google Play
 * [ ] write more tests
 * [x] add multilang support

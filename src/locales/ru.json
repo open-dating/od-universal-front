@@ -61,7 +61,9 @@
       "logout": "Выйти",
       "removeProfile": "Удалить профиль",
       "searchRadius": "Радиус поиска",
-      "wantToFindGender": "Я хочу найти"
+      "wantToFindGender": "Я хочу найти",
+      "profileEdit": "Редактирование профиля",
+      "bio": "Немного о себе"
     },
     "im": {
       "noSympathies": "There are no mutual sympathies yet, how only appear you can write to each other",

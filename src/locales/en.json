@@ -61,7 +61,9 @@
       "logout": "logout",
       "removeProfile": "Delete profile",
       "searchRadius": "Search radius",
-      "wantToFindGender": "I want to find"
+      "wantToFindGender": "I want to find",
+      "profileEdit": "Profile edit",
+      "bio": "Smth about you"
     },
     "im": {
       "noSympathies": "There are no mutual sympathies yet, how only appear you can write to each other",

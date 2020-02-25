@@ -19,6 +19,7 @@ import {ProfileSummaryInfo} from './components/ProfileSummaryInfo'
 import {ProfileSummaryPhotos} from './components/ProfileSummaryPhotos'
 import {ProfileSummarySettingsEdit} from './components/ProfileSummarySettingsEdit'
 import {ProfileSummaryStatistic} from './components/ProfileSummaryStatistic'
+import {ProfileSummaryProfileEdit} from './components/ProfileSummaryProfileEdit'
 
 export function ProfileSummary() {
   const dispatch = useDispatch()
@@ -118,6 +119,20 @@ export function ProfileSummary() {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <ProfileSummarySettingsEdit/>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+
+          <ExpansionPanel
+            expanded={activePanel === 'profile-edit'}
+            onChange={() => changeActivePanel('profile-edit')}
+          >
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon/>}
+            >
+              {t('user.profileEdit')}
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <ProfileSummaryProfileEdit/>
             </ExpansionPanelDetails>
           </ExpansionPanel>
 
