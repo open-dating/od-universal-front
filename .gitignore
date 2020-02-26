@@ -36,3 +36,6 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+google-services.json
+GoogleService-Info.plist

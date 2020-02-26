@@ -19,6 +19,12 @@ process.env['REACT_APP_FULL_VERSION'] = `${pkg.version}:${process.env.REACT_APP_
 console.log('REACT_APP_HOST=', process.env['REACT_APP_HOST'])
 console.log('REACT_APP_FULL_VERSION=', process.env['REACT_APP_FULL_VERSION'])
 
+console.warn(`For mobile development you need go to https://console.firebase.google.com/
+create project, get Cloud Messaging config files and save as:
+google-services.json
+GoogleService-Info.plist
+for send and recieve pushes`)
+
 /**
  * @help https://github.com/timarney/react-app-rewired/tree/f81e1f482a644ca7baff752776adafeb760cf5da#extended-configuration-options
  * @param config
