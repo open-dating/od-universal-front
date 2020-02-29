@@ -17,6 +17,12 @@ RUN printf "%s\n" \
     "CI=true" \
     >> .env
 
+ARG HOST
+ENV REACT_APP_HOST "$HOST"
+
+ARG SENTRY_DSN
+ENV REACT_APP_SENTRY_DSN "$SENTRY_DSN"
+
 RUN npm run lint
 
 RUN npm run test

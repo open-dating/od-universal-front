@@ -3,10 +3,14 @@ CONT_NAME ?= "od-universal-front"
 PORT ?= 4100
 no-cache ?= false
 DOCKER_USERNAME ?= "opendating"
+SENTRY_DSN ?= "https://DUMMY@sentry.io/3271268"
+HOST ?= ""
 
 .PHONY: build-docker-image
 build-docker-image:
-	docker build --no-cache=$(no-cache) . -t $(CONT_NAME)
+	docker build --no-cache=$(no-cache) . -t $(CONT_NAME) \
+	--build-arg HOST="$(HOST)" \
+	--build-arg SENTRY_DSN="$(SENTRY_DSN)"
 
 .PHONY: run-docker-image
 run-docker-image:

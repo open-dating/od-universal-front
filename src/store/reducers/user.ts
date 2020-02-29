@@ -1,3 +1,5 @@
+import {configureScope} from '@sentry/browser'
+
 import {StateUser} from '../../interfaces/StateUser'
 import {
   USER_DATA_REMOVE,
@@ -28,13 +30,13 @@ export const user = (state = initialUserState, {type, jwt, profile, dialog}: {ty
 
     localStorage.setItem(USER_DATA_SAVE, JSON.stringify(updatedState))
 
-    // errorTrack.setUser(updatedState.user)
+    if (updatedState.profile) {
+      saveUserInErrTracking(updatedState.profile)
+    }
 
     return updatedState
   } else if (type === USER_DATA_REMOVE) {
     localStorage.removeItem(USER_DATA_SAVE)
-
-    // errorTrack.setUser(null)
 
     return {profile: null, jwt: null}
   } else if (type === USER_DATA_ADD_UNREAD_DIALOG) {
@@ -68,4 +70,17 @@ export const user = (state = initialUserState, {type, jwt, profile, dialog}: {ty
   } else {
     return state
   }
+}
+
+const saveUserInErrTracking = (profile: UserProfile) => {
+  configureScope(scope => {
+    scope.setUser({
+      id: String(profile.id),
+      email: String(profile.email),
+    })
+  })
+}
+
+if (initialUserState.profile) {
+  saveUserInErrTracking(initialUserState.profile)
 }

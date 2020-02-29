@@ -6,6 +6,7 @@ import {Complaint} from './Complaint'
 
 export interface UserProfile {
   id: number
+  email: string
   unreadDialogs: ImDialog[]
   photos: Photo[]
   firstname: string

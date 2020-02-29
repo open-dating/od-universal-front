@@ -55,6 +55,7 @@ HOST=http://192.168.1.65:4300
 ```
 
 ## Roadmap
+* [x] connect to sentry
 * [x] create and add logo
 * [x] check fcm notifications
 * [ ] fix small layouts bugs
