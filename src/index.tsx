@@ -15,6 +15,7 @@ import App from './App'
 // import * as serviceWorker from './serviceWorker'
 
 Sentry.init({
+  enabled: process.env.NODE_ENV === 'production',
   release: process.env['REACT_APP_VERSION_CODE'],
   environment: process.env.NODE_ENV || 'unknown',
   dsn: process.env['REACT_APP_SENTRY_DSN'] || 'https://DUMMY@sentry.io/3271268',
