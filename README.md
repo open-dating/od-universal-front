@@ -1,5 +1,13 @@
 # od-universal-front
 
+Open Dating is open source project like Tinder and others similar service, with lot of differents:
+
+| | | | | |
+| ------------- | ------------- | ------------- | ------------- |:-------------:|
+| ![](docs/preview-photos/join.png) | ![](docs/preview-photos/im.png)| ![](docs/preview-photos/stats.png) | ![](docs/preview-photos/stats-public.png) | ![](docs/preview-photos/profile.png) |
+| We realy use dnn for help find couples(by faces) | You can send photo in im(we protect you from nsfw)| You can see you stats | And stats in your country | And many others things|
+
+
 ## Development
 ```shell script
 npm run start
