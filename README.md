@@ -5,8 +5,15 @@ Open Dating is open source project like Tinder and others similar service, with 
 | | | | | |
 | ------------- | ------------- | ------------- | ------------- |:-------------:|
 | ![](docs/preview-photos/join.png) | ![](docs/preview-photos/im.png)| ![](docs/preview-photos/stats.png) | ![](docs/preview-photos/stats-public.png) | ![](docs/preview-photos/profile.png) |
-| We realy use dnn for help find couples(by faces) | You can send photo in im(we protect you from nsfw)| You can see you stats | And stats in your country | And many others things|
+| We realy use dnn for help find couples(by face similarity) | You can send photo in im(we protect you from nsfw)| You can see you stats | And stats in your country | And many others things|
 
+Main ideas:
+ - all code is open
+ - no fake accounts, paid chats and scams [[link](https://www.tokyoreporter.com/crime/tokyo-dating-site-registered-2-8-million-men-1-woman/)]
+ - user profile stats opened for owner, statistics by countries opened for all people
+ - people can allow scientists to use their data from the service in order to study the problems of society and solve demographic problems
+ - we use science for help people find couple (now used face similarity [[link](https://www.mic.com/articles/111010/there-s-a-disturbing-fact-about-the-people-we-choose-to-be-with)][[link](https://journals.sagepub.com/doi/10.1177/0146167210377180)])
+ - payment of servers, etc. will be through donations
 
 ## Development
 ```shell script
