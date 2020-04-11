@@ -15,6 +15,8 @@ Main ideas:
  - we use science for help people find couple (now used face similarity [[link](https://www.mic.com/articles/111010/there-s-a-disturbing-fact-about-the-people-we-choose-to-be-with)][[link](https://journals.sagepub.com/doi/10.1177/0146167210377180)])
  - payment of servers, etc. will be through donations
 
+More info on project site: https://open-dating.org/
+
 ## Development
 ```shell script
 npm run start
