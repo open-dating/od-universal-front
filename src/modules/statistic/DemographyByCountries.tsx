@@ -13,10 +13,14 @@ import {SpinnerPrefetch} from '../../shared-components/SpinnerPrefetch'
 import {attachCountryStatPopup, detachCountryStatPopup} from './components/CountryStatPopup'
 import {StateApp} from '../../interfaces/StateApp'
 
+type Bounds = {
+  [key: string]: any
+}
+
 export function DemographyByCountries() {
   const userData = useSelector((state: StateApp) => state.user)
   const [stat, setStat] = useState<StateFetchAnyItem<DemographyDto>>({item: null, loading: true, error: null})
-  const [bounds, setBounds] = useState()
+  const [bounds, setBounds] = useState<Bounds>()
   const mapElement = useRef<HTMLDivElement>(null)
   const map = useRef<L.Map>()
   const {t} = useTranslation()

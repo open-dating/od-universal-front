@@ -24,7 +24,7 @@ import {ProfileSummaryProfileEdit} from './components/ProfileSummaryProfileEdit'
 export function ProfileSummary() {
   const dispatch = useDispatch()
   const userData = useSelector((state: StateApp) => state.user)
-  const [activePanel, setActivePanel] = useState()
+  const [activePanel, setActivePanel] = useState<string>()
   const [fetchState, setFetchState] = useState<StateFetch>({
     loading: false,
     error: null,
