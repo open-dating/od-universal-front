@@ -15,7 +15,6 @@ import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import {useDispatch, useSelector} from 'react-redux'
-import {useHistory} from 'react-router-dom'
 import {Grid, makeStyles} from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
 import Slider from '@material-ui/core/Slider'
@@ -91,7 +90,6 @@ const schema = Yup.object().shape({
 
 export function JoinFinish() {
   const classes = useStyles()
-  const history = useHistory()
   const joinForm = useSelector((state: StateApp) => state.join)
   const dispatch = useDispatch()
   const formikRef = useRef<any>(null)
@@ -165,8 +163,6 @@ export function JoinFinish() {
       const {data} = await post(urlsAuth.createUser(), form)
 
       dispatch(saveUserData(data))
-
-      history.push('/user/search-near')
     } catch (e) {
       const invalidFields = getValidationError(e)
       if (invalidFields) {

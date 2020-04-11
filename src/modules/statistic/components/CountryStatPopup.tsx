@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {useTranslation} from 'react-i18next'
 
+import './CountryStatPopup.scss'
 import {DemographyStatDto} from '../../../interfaces/DemographyStatDto'
 import {calcTotal} from '../utils/calcs'
 import {UserGender} from '../../../enums/user-gender.enum'
@@ -15,13 +16,15 @@ export function CountryStatPopup({feature, statItems}: props) {
   const {t} = useTranslation()
 
   return (
-    <div>
-      <div>
-        {feature.properties.namedetails['name:en']}
-        ({feature.properties.display_name})
+    <div className="country-stat-popup">
+      <div className="country-stat-popup__title">
+        {feature.properties.namedetails['name:en']} ({feature.properties.display_name})
       </div>
-      <div>
-        <img src={feature.properties.extratags.flag} alt="flag" height="40px" width="auto"/>
+      <div className="country-stat-popup__flag">
+        <img
+          src={feature.properties.extratags.flag}
+          alt="flag"
+        />
       </div>
       <div>
         {t('statistic.totals')}: <br/>

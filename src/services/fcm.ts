@@ -80,7 +80,7 @@ export function saveFCMToken(accessToken: any) {
 }
 
 export function removeFCMToken(accessToken: string) {
-  if (!accessToken) {
+  if (!accessToken || !token) {
     return
   }
 

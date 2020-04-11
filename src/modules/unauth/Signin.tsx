@@ -63,8 +63,6 @@ export function Signin() {
       const {data}: { data: AuthDto } = await post(urlsAuth.login(), values)
 
       dispatch(saveUserData(data))
-
-      history.push('/users/search-near')
     } catch (e) {
       const invalidFields = getValidationError(e)
       if (invalidFields) {

@@ -9,7 +9,7 @@ import {i18n} from '../../i18n'
 export const saveUserData = (
   {profile, jwt}: { profile?: UserProfile, jwt?: JWT },
 ) => (dispatch: (arg0: { type: string; profile: UserProfile | undefined; jwt: JWT | undefined }) => void) => {
-  if (profile && profile.language) {
+  if (profile && profile.language && profile.language !== i18n.language) {
     i18n.changeLanguage(profile.language).catch(e => {
       console.error(e)
     })

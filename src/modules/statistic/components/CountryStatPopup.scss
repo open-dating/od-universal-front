@@ -1,0 +1,14 @@
+.country-stat-popup {
+  &__title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__flag {
+    img {
+      height: 40px;
+      width: auto;
+    }
+  }
+}

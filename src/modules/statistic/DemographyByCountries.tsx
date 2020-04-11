@@ -68,7 +68,9 @@ export function DemographyByCountries() {
 
     const onEachFeature = (countryCode: string, feature: any, layer: L.GeoJSON) => {
       const wrapper = document.createElement('div')
-      const popupLayer = layer.bindPopup(wrapper)
+      const popupLayer = layer.bindPopup(wrapper, {
+        minWidth: 100,
+      })
 
       popupLayer.on('popupopen', () => {
         if (!(stat.item && stat.item[countryCode])) {
