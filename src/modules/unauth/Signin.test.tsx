@@ -8,10 +8,9 @@ import thunkMiddleware from 'redux-thunk'
 import {Signin} from './Signin'
 import * as restClient from '../../services/api/restClient'
 
-let lastHistoryValue = ''
 jest.mock('react-router-dom', () => ({
   useHistory: () => ({
-    push: (v: string) => lastHistoryValue = v,
+    push: (v: string) => '',
   }),
 }))
 
@@ -60,8 +59,6 @@ it('Signin, login in app', async () => {
     const f = container.querySelector('form')
     f && Simulate.submit(f)
   })
-
-  expect(lastHistoryValue).toBe('/users/search-near')
 
   // @ts-ignore
   restClient.post.mockRestore()
