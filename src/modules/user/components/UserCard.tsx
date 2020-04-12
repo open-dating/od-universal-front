@@ -60,6 +60,12 @@ export function UserCard(
   const [markResult, setMarkResult] = useState('')
   const [dialog, setDialog] = useState<ImDialog|null>(null)
 
+  const waitForAnimations = (actionStartedAt = 0, animDelay = 300) => {
+    const period = +new Date() - actionStartedAt
+    const ms = period < animDelay ? animDelay : 0
+    return new Promise(resolve => setTimeout(resolve, ms))
+  }
+
   const onSwipeStart = () => {
     setSwipeX(0)
   }
@@ -194,12 +200,12 @@ export function UserCard(
       return
     }
 
+    const startedAt = +new Date()
     animateResetSwipe()
     setMarkResult('like')
     setLikeIndicatorAs('like')
 
     try {
-      await wait()
       const result = await likeUser(user)
 
       const dialog: ImDialog|null = result.data.dialog
@@ -212,11 +218,13 @@ export function UserCard(
           setLikeIndicatorAs('like', Infinity)
         }, 50)
       } else {
+        await waitForAnimations(startedAt)
         onLike(user)
       }
     } catch (e) {
       console.error(e)
       openMessageBox(e)
+      await waitForAnimations(startedAt)
       onLike(user, e)
     }
   }
@@ -226,23 +234,20 @@ export function UserCard(
       return
     }
 
+    const startedAt = +new Date()
     setMarkResult('pass')
     setLikeIndicatorAs('dislike', Infinity)
 
     try {
-      await wait()
       await passUser(user)
+      await waitForAnimations(startedAt)
       onPass(user)
     } catch (e) {
       console.error(e)
       openMessageBox(e)
+      await waitForAnimations(startedAt)
       onPass(user, e)
     }
-  }
-
-  const wait = () => {
-    return Promise.resolve()
-    // return new Promise(resolve => setTimeout(resolve, 5000))
   }
 
   const closeComplaint = () => {
@@ -267,12 +272,15 @@ export function UserCard(
   const firstPhoto = nextPhotos.shift()
   const secondPhoto = nextPhotos.shift()
 
-  let userMarkClassName = ''
-  if (markResult === 'match') {
-    userMarkClassName = 'user-profile__card--marked-as-match'
-  } else if (markResult) {
-    userMarkClassName = 'user-profile__card--marked'
-  }
+  const userMarkClassName = React.useMemo(() => {
+    let cls = ''
+    if (markResult === 'match') {
+      cls = 'user-profile__card--marked-as-match'
+    } else if (markResult) {
+      cls = 'user-profile__card--marked'
+    }
+    return cls
+  }, [markResult])
 
   return (
     <div className="user-card">
