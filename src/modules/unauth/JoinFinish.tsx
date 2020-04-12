@@ -25,6 +25,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import {useTranslation} from 'react-i18next'
 
+import './JoinFinish.scss'
 import {FormItem} from '../../shared-components/FormItem'
 import {post} from '../../services/api/restClient'
 import {urlsAuth} from '../../services/api/urls'
@@ -134,7 +135,7 @@ export function JoinFinish() {
       setRest({loading: true, invalidFields: {}})
 
       await promptConfirmBox(
-        t('unauth.locationInfoProm'),
+        t('unauth.locationInfoPromt'),
         {hideCancel: true},
       )
 
@@ -181,7 +182,7 @@ export function JoinFinish() {
   return (
     <Container>
       <JoinSteps activeStep={3}/>
-      <Container>
+      <Container className="join-finish">
         <Formik
           innerRef={i => formikRef.current = i}
           initialValues={form}

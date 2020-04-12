@@ -1,7 +1,10 @@
+@import '../../config/variables';
+
 .join-photos {
   box-shadow: none !important;
   border-radius: 0 !important;
   border-color: transparent !important;
+  margin-bottom: $btmOffset;
 
   .join-photos__actions {
     display: flex;

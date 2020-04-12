@@ -1,7 +1,10 @@
+@import '../../config/variables';
+
 .selfie {
   box-shadow: none !important;
   border-radius: 0 !important;
   border-color: transparent !important;
+  margin-bottom: $btmOffset;
 
   .selfie__content {
     position: relative;
