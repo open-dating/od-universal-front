@@ -10,10 +10,14 @@ import {urlsUser} from '../services/api/urls'
 import {saveUserData} from '../store/actions/user'
 import {openMessageBox} from './MessageBox'
 
+// 'ru-RU' to 'ru'
+const getLngMainCode = (lng = '') => {
+  return String(lng).split('-')[0]
+}
+
 export function LangChanger() {
   const {i18n} = useTranslation()
-  const [mainLng] = String(i18n.language).split('-') // 'ru-RU'
-  const [lang, setLang] = useState(mainLng)
+  const [lang, setLang] = useState(getLngMainCode(i18n.language))
   const userData = useSelector((state: StateApp) => state.user)
   const dispatch = useDispatch()
 
@@ -46,7 +50,7 @@ export function LangChanger() {
 
   useEffect(() => {
     if (userData.profile?.language && userData.profile?.language !== lang) {
-      setLang(userData.profile?.language)
+      setLang(getLngMainCode(userData.profile?.language))
     }
   }, [userData, lang])
 
