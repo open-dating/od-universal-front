@@ -1,14 +1,14 @@
 {
   "name": "od-universal-front",
-  "version": "0.3.0",
+  "version": "0.0.7",
   "license": "GPL-3.0-or-later",
   "homepage": "https://open-dating.org/",
   "bugs": {
     "url": "https://github.com/open-dating/od-universal-front/issues"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/open-dating/od-universal-front.git"
+    "type": "git",
+    "url": "https://github.com/open-dating/od-universal-front.git"
   },
   "author": "Gabdrashitov Rinat <paladin2012gnu@gmail.com>",
   "typings": "src/react-app-env.d.ts",
