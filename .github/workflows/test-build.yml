@@ -7,6 +7,27 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: Build and test
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.13.0'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm run test:ci
+
+      - name: Build image
         run: |
-          make build-docker-image SENTRY_DSN=${{ secrets.REACT_APP_SENTRY_DSN }}
+          make build-docker-image CONT_NAME="od-universal-front" SENTRY_DSN=${{ secrets.REACT_APP_SENTRY_DSN }}
+
+      - name: Codecov unit
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage/clover.xml
+          flags: unittests
+          fail_ci_if_error: false

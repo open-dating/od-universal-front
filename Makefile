@@ -23,11 +23,6 @@ build-n-run:
 	@$(MAKE) build-docker-image
 	@$(MAKE) run-docker-image
 
-.PHONY: push-docker-image
-push-docker-image:
-	docker tag $(CONT_NAME) $(DOCKER_USERNAME)/$(CONT_NAME):latest
-	docker push $(DOCKER_USERNAME)/$(CONT_NAME):latest
-
 .PHONY: cordova-install-requirements-in-ubuntu-for-android
 cordova-install-requirements-in-ubuntu-for-android:
 	sudo apt install openjdk-8-jre-headless openjdk-8-jdk gradle

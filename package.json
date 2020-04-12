@@ -17,7 +17,7 @@
     "build": "react-app-rewired build",
     "build-cordova": "cross-env NODE_ENV.REACT_APP_CORDOVA=true npm run build",
     "test": "react-app-rewired test",
-    "test:ci": "cross-env CI=true react-app-rewired test",
+    "test:ci": "cross-env CI=true react-app-rewired test --coverage",
     "lint": "eslint src --ext .ts,.tsx,.js",
     "lint:fix": "eslint src --ext .ts,.tsx,.js --fix"
   },

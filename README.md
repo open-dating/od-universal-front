@@ -1,5 +1,11 @@
 # od-universal-front
 
+[![Docker](https://img.shields.io/docker/pulls/opendating/od-universal-front)](https://hub.docker.com/repository/docker/opendating/od-universal-front/tags)
+![License](https://img.shields.io/github/license/open-dating/od-universal-front)
+[![codecov](https://codecov.io/gh/open-dating/od-universal-front/branch/master/graph/badge.svg)](https://codecov.io/gh/open-dating/od-universal-front)
+[![DeepScan grade](https://deepscan.io/api/teams/2754/projects/9569/branches/126329/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=2754&pid=9569&bid=126329)
+![Github CI](https://github.com/open-dating/od-universal-front/workflows/Test,%20build,%20deploy/badge.svg)
+
 Open Dating is open source project like Tinder and others similar service, with lot of differents:
 
 | | | | | |

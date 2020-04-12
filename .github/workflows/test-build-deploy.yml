@@ -1,0 +1,65 @@
+on:
+  push:
+    tags:
+      - v*
+
+name: Test, build, deploy
+jobs:
+  master:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.13.0'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm run test:ci
+
+      - name: Build image
+        run: |
+          make build-docker-image CONT_NAME="od-universal-front" SENTRY_DSN=${{ secrets.REACT_APP_SENTRY_DSN }}
+
+      - name: Codecov unit
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage/clover.xml
+          flags: unittests
+          fail_ci_if_error: true
+
+      - name: Login in docker registry
+        run: |
+          echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
+      - name: Build and push image
+        run: |
+          docker tag od-universal-front opendating/od-universal-front:latest
+          docker push opendating/od-universal-front:latest
+          docker tag od-universal-front opendating/od-universal-front:${{ steps.get_version.outputs.VERSION }}
+          docker push opendating/od-universal-front:${{ steps.get_version.outputs.VERSION }}
+
+      - name: Connect to server and update
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            whoami
+            ls -al
+            docker pull opendating/od-universal-front:latest
+            docker rm --force od-universal-front || echo ""
+            docker run -d -p 4210:80 --name od-universal-front --restart always opendating/od-universal-front:latest
