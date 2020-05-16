@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Demography by countries, map rendered 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <DemographyByCountries>
+    <div
+      className="demography-by-countries"
+    >
+      <SpinnerPrefetch>
+        <div
+          className="spinner-prefetch"
+        >
+          <div
+            className="spinner-prefetch__element"
+          >
+            <WithStyles(ForwardRef(CircularProgress))>
+              <ForwardRef(CircularProgress)
+                classes={
+                  Object {
+                    "circle": "MuiCircularProgress-circle",
+                    "circleDisableShrink": "MuiCircularProgress-circleDisableShrink",
+                    "circleIndeterminate": "MuiCircularProgress-circleIndeterminate",
+                    "circleStatic": "MuiCircularProgress-circleStatic",
+                    "colorPrimary": "MuiCircularProgress-colorPrimary",
+                    "colorSecondary": "MuiCircularProgress-colorSecondary",
+                    "indeterminate": "MuiCircularProgress-indeterminate",
+                    "root": "MuiCircularProgress-root",
+                    "static": "MuiCircularProgress-static",
+                    "svg": "MuiCircularProgress-svg",
+                  }
+                }
+              >
+                <div
+                  className="MuiCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+                  role="progressbar"
+                  style={
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    }
+                  }
+                >
+                  <svg
+                    className="MuiCircularProgress-svg"
+                    viewBox="22 22 44 44"
+                  >
+                    <circle
+                      className="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+                      cx={44}
+                      cy={44}
+                      fill="none"
+                      r={20.2}
+                      strokeWidth={3.6}
+                      style={Object {}}
+                    />
+                  </svg>
+                </div>
+              </ForwardRef(CircularProgress)>
+            </WithStyles(ForwardRef(CircularProgress))>
+          </div>
+        </div>
+      </SpinnerPrefetch>
+      <div
+        className="demography-by-countries__header"
+      />
+      <div
+        className="demography-by-countries__content"
+      >
+        <div
+          className="demography-by-countries__content__map"
+        />
+      </div>
+    </div>
+  </DemographyByCountries>
+</Provider>
+`;

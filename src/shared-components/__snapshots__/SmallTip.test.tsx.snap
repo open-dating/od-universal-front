@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SmallTip toMatchSnapshot 1`] = `
+<div
+  className="small-tip"
+>
+  <small>
+    <div>
+      Some tip text
+    </div>
+  </small>
+</div>
+`;

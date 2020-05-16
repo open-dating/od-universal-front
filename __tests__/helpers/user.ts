@@ -18,6 +18,8 @@ class User implements UserProfile {
   useType = UserUseType.Other
   weight = 13
   language = 'en'
+  email = ''
+  bio = ''
 }
 
 export function createUserMock(id: number): User {

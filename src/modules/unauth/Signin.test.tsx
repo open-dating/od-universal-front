@@ -1,8 +1,7 @@
 import React from 'react'
 import {Provider} from 'react-redux'
 import configureStore from 'redux-mock-store'
-import {render} from 'react-dom'
-import {act, Simulate} from 'react-dom/test-utils'
+import {render, act, fireEvent} from '@testing-library/react'
 import thunkMiddleware from 'redux-thunk'
 
 import {Signin} from './Signin'
@@ -22,11 +21,8 @@ const mockStore = configureStore([thunkMiddleware])
 
 it('Signin, login in app', async () => {
   const store = mockStore({})
-  const container: HTMLElement = document.createElement('div')
 
-  await act(async () => {
-    render(<Provider store={store}><Signin /></Provider>, container)
-  })
+  const {container} = render(<Provider store={store}><Signin /></Provider>)
 
   await act(async () => {
     const form: any = {
@@ -38,7 +34,7 @@ it('Signin, login in app', async () => {
       const el: HTMLInputElement|null = container.querySelector(`input[name=${fName}]`)
       if (!el) continue
       el.value = form[fName]
-      Simulate.change(el)
+      fireEvent.change(el)
     }
   })
 
@@ -57,7 +53,7 @@ it('Signin, login in app', async () => {
 
   await act(async () => {
     const f = container.querySelector('form')
-    f && Simulate.submit(f)
+    f && fireEvent.submit(f)
   })
 
   // @ts-ignore
