@@ -1,7 +1,8 @@
 # od-universal-front
 
-[![Docker](https://img.shields.io/docker/pulls/opendating/od-universal-front)](https://hub.docker.com/repository/docker/opendating/od-universal-front/tags)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://www.conventionalcommits.org/)
 ![License](https://img.shields.io/github/license/open-dating/od-universal-front)
+[![Docker](https://img.shields.io/docker/pulls/opendating/od-universal-front)](https://hub.docker.com/repository/docker/opendating/od-universal-front/tags)
 [![codecov](https://codecov.io/gh/open-dating/od-universal-front/branch/master/graph/badge.svg)](https://codecov.io/gh/open-dating/od-universal-front)
 [![DeepScan grade](https://deepscan.io/api/teams/2754/projects/9569/branches/126329/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=2754&pid=9569&bid=126329)
 ![Github CI](https://github.com/open-dating/od-universal-front/workflows/Test,%20build,%20deploy/badge.svg)
@@ -28,6 +29,11 @@ More info on project site: https://open-dating.org/
 npm run start
 ```
 
+If you use public api from https://app.open-dating.org/api/v1/doc/ you need to create .env file with:
+```shell script
+REACT_APP_HOST=https://app.open-dating.org
+```
+
 ## Build
 ```shell script
 # install docker and make
@@ -41,6 +47,32 @@ make build-n-run
 ## Test
 ```
 npm run test
+```
+
+## Structure
+```shell script
+src/
+src/config - config files, constants, css variables
+src/enums - all enums
+src/interfaces - all interfaces
+src/locales - translate for i18n
+src/modules - pages separed by modules
+src/modules/<module-name> - pages for current module(module is e.g.: chat, admin, orders etc.)
+src/modules/<module-name>/components - components which used only in module
+src/shared-components - global reusable components, ui-kit, layouts
+src/services - rest clients, socket clients and etc
+src/store - redux stores
+src/utils - helpers functions and etc
+src/App.scss - global css
+src/Routes.tsx - routes for app
+src/Static.tsx - global components which rendered top of routes, runners for background services
+```
+
+Each component:
+```shell script
+ComponentName.tsx - react component with named export, on root element css class name for component
+ComponentName.scss - styles for component, related to root element css class
+ComponentName.test.tsx - tests for component
 ```
 
 ## Mobile
