@@ -9,6 +9,4 @@ describe('FormTitle', () => {
     )
     expect(wrapper).toMatchSnapshot()
   })
-
-
 })

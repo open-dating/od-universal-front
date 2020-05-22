@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FetchError toMatchSnaphoot 1`] = `
+<WithStyles(ForwardRef(Alert))
+  className="fetch-error"
+  severity="error"
+>
+  <WithStyles(ForwardRef(AlertTitle))>
+    sharedComponents.error
+  </WithStyles(ForwardRef(AlertTitle))>
+  Errror message
+</WithStyles(ForwardRef(Alert))>
+`;

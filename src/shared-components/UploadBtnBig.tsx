@@ -1,12 +1,13 @@
 import React, {ChangeEvent} from 'react'
 import Button from '@material-ui/core/Button'
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate'
+import {getRandom} from './../utils/random'
 
 import './UploadBtnBig.scss'
 
 export function UploadBtnBig({loading, onChange}: {loading?: boolean, onChange: (evt: ChangeEvent<HTMLInputElement>) => void}) {
   // always render new button, for upload duplicate photos
-  const uniqKey = Math.random()
+  const uniqKey = getRandom()
 
   return (
     <div className="upload-btn-big">
