@@ -8,6 +8,6 @@ exports[`FetchError toMatchSnaphoot 1`] = `
   <WithStyles(ForwardRef(AlertTitle))>
     sharedComponents.error
   </WithStyles(ForwardRef(AlertTitle))>
-  Errror message
+  Error message
 </WithStyles(ForwardRef(Alert))>
 `;
