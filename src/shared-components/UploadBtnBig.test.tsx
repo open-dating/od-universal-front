@@ -28,6 +28,4 @@ describe('<UploadBtnBig /> interactions', () => {
         expect(wrapper).toMatchSnapshot()
     })
 })
-
-
-   
+ 
