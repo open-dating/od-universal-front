@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UploadBtnBig /> interactions should render 1 button with false 1`] = `
+<div
+  className="upload-btn-big"
+>
+  <WithStyles(ForwardRef(Button))
+    className="upload-btn-big__btn"
+    color="primary"
+    disabled={false}
+    variant="contained"
+  >
+    <AddPhotoAlternateIcon />
+  </WithStyles(ForwardRef(Button))>
+  <input
+    key="1"
+    onChange={[Function]}
+    type="file"
+  />
+</div>
+`;
+
+exports[`<UploadBtnBig /> interactions should render 1 button with true 1`] = `
+<div
+  className="upload-btn-big"
+>
+  <WithStyles(ForwardRef(Button))
+    className="upload-btn-big__btn"
+    color="primary"
+    disabled={true}
+    variant="contained"
+  >
+    <AddPhotoAlternateIcon />
+  </WithStyles(ForwardRef(Button))>
+  <input
+    key="1"
+    onChange={[Function]}
+    type="file"
+  />
+</div>
+`;
