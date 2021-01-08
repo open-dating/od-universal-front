@@ -40,7 +40,7 @@
     "@material-ui/pickers": "^3.2.9",
     "@sentry/browser": "^5.13.0",
     "@webwingscz/googlefont-roboto": "^1.0.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "blob-util": "^2.0.2",
     "browser-image-manipulation": "^0.3.3",
     "chart.js": "^2.9.3",
