@@ -112,7 +112,7 @@
     "husky": "^4.2.5",
     "jimp": "^0.9.3",
     "list-files-in-dir": "^0.1.5",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "png-to-ico": "^2.1.0",
     "prettier": "^1.19.1",
     "raf": "^3.4.1",
